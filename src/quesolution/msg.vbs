@@ -1,0 +1,1 @@
+x = msgbox("ADB commands finished (doesnt mean sucessful) if you think they were sucesfull then quickly press the quests power button 2 times to put it into sleep mode and out for the settings to apply (dont turn it off !)",0+00,"quesolution 9000")
