@@ -1,0 +1,390 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Welcome file</title>
+  <link rel="stylesheet" href="https://stackedit.io/style.css" />
+</head>
+
+<body class="stackedit">
+  <div class="stackedit__html"><h1 id="guih--simple-documentation"><strong>GuiH -simple documentation</strong></h1>
+<h3 id="info">info</h3>
+<pre><code>GuiH is my work in progress computercraft GUI api
+i made it in like a week trying to get usable performance and nice usage
+</code></pre>
+<p>download: <code>wget run https://github.com/9551-Dev/Gui-h/raw/main/installer.lua</code></p>
+<h1 id="section"></h1>
+<h3 id="features">features</h3>
+<ul>
+<li>
+<p><strong>Core</strong></p>
+<ul>
+<li>core features are the ones used to actually run the API<br>
+since the api allows custom objects it provides you with<br>
+an api to create them this api is really simple and will be documented later<br>
+theese include
+<ul>
+<li>automatic file handling</li>
+<li>automatic update handling</li>
+<li>automatic child GUI processing,position correcting</li>
+<li>grabbing events</li>
+<li>texture wrapping</li>
+<li>and more…</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Gui</strong></p>
+<ul>
+<li>
+<p>this is going to be about the current objects the api comes with and short description</p>
+</li>
+<li>
+<p>first of i need to note that all the function take in tables as inputs. all the values are optional<br>
+but you should provide key ones like name and position  by default<br>
+the actuall usage will be discussed later with the  arguments included</p>
+</li>
+<li>
+<p>input functions: some build in objects provide you with “event functions”<br>
+theese functions get called at specific times and might be useful !</p>
+</li>
+<li>
+<p>each one of theese has a texture support via the <code>tex</code> input variable</p>
+</li>
+<li>
+<p>buttons and switches have support for the text and tex_on input<br>
+for theese you input  the text object which gets create via<br>
+your GUI object in the text function. more on that later of course</p>
+</li>
+<li>
+<p>types of build in objects</p>
+<ul>
+<li><code>button</code>  &gt; a simple button that runs the on_click function when clicked</li>
+<li><code>switch</code> &gt; similiar to a button. swich keeps its value and flips it on click</li>
+<li><code>progressbar</code> &gt; i mean… it kinda says it. its an progress bar<br>
+theese bars have 4 direction support !</li>
+<li><code>frame</code> frames kinda act like windows/tabs. you can use of their event functions<br>
+to make use of them as an dragger for example !, they store they own window and you<br>
+can move them around by dragging defined dragger</li>
+</ul>
+</li>
+<li>
+<p>sure 4 default objects isnt much but you can make your own, i will also add more :P</p>
+</li>
+<li>
+<p>if you made an object and want it to be added by default ping me on discord</p>
+</li>
+</ul>
+</li>
+</ul>
+<h1 id="section-1"></h1>
+<h1 id="basic-usage"><strong>basic usage</strong></h1>
+<h3 id="so-here-i-will-talk-about-the-basics-and-concepts-of-the-api-instead-of-showing-much-code">so here i will talk about the basics and concepts of the api instead of showing much code</h3>
+<ul>
+<li>
+<p>when your GuiH install finishes you are gonna get a new folder called GuiH<br>
+this is the APIs folder dont touch it ! running the files will have it crash anyways</p>
+</li>
+<li>
+<p>this api only works when required propperly you you update the api by running GuiH/installer.lua</p>
+</li>
+<li>
+<p>if you want to add custom objects you need to put  their folder into the objects folder in GuiH<br>
+i will go over the object structure later…</p>
+</li>
+</ul>
+<h3 id="usage">usage</h3>
+<p>to use the api you have to require its main.lua  file	<br>
+this will give you 2 functions. load_texture and create_gui. the usage of theese function is</p>
+<pre class=" language-lua"><code class="prism  language-lua"><span class="token function">require</span><span class="token punctuation">(</span><span class="token string">"GuiH.main"</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">&gt;</span> API
+</code></pre>
+<pre class=" language-lua"><code class="prism  language-lua">API<span class="token punctuation">.</span><span class="token function">create_gui</span><span class="token punctuation">(</span>terminal object<span class="token punctuation">:</span> table<span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">&gt;</span> GUI_OBJECT
+</code></pre>
+<pre class=" language-lua"><code class="prism  language-lua">API<span class="token punctuation">.</span><span class="token function">load_texture</span><span class="token punctuation">(</span>nimg path<span class="token punctuation">:</span> string <span class="token operator">/</span> nimg_data<span class="token punctuation">:</span> table<span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">&gt;</span> GUI_TEXTURE
+</code></pre>
+<p>your create_gui function will need a terminal object. if you use term i highly reccomend to use term.current()<br>
+it will return a GUI_OBJECT which is an table that consists of a few main things</p>
+<ul>
+<li>the  <code>create</code> table (consists functions to create new objects)</li>
+<li>the <code>gui</code> table (has all the existing objects saved in it)</li>
+<li>the <code>text</code> function (creation of text objects)</li>
+<li>the <code>visible</code> boolean (sets if this object should be visible)</li>
+<li>and the updatee function (used to update your GUI and yield for events)</li>
+</ul>
+<h1 id="section-2"></h1>
+<p><strong>USAGE OF CREATE</strong></p>
+<ul>
+<li>the create table is what you are gonna be using to create your objects.<br>
+it is used like this</li>
+</ul>
+<pre class=" language-lua"><code class="prism  language-lua">GUI_OBJECT<span class="token punctuation">.</span>create<span class="token punctuation">.</span><span class="token operator">&lt;</span>name<span class="token operator">&gt;</span><span class="token punctuation">(</span>input<span class="token punctuation">:</span> table<span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">&gt;</span> GUI_BUTTON
+</code></pre>
+<p>so  for example</p>
+<pre class=" language-lua"><code class="prism  language-lua">GUI_OBJECT<span class="token punctuation">.</span>create<span class="token punctuation">.</span><span class="token function">button</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+	name<span class="token operator">=</span><span class="token string">"shutdown_button"</span><span class="token punctuation">,</span>
+	x<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">,</span>y<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">,</span>width<span class="token operator">=</span><span class="token number">3</span><span class="token punctuation">,</span>height<span class="token operator">=</span><span class="token number">3</span><span class="token punctuation">,</span>
+	background_color <span class="token operator">=</span> colors<span class="token punctuation">.</span>lime<span class="token punctuation">,</span>
+	on_click<span class="token operator">=</span><span class="token keyword">function</span><span class="token punctuation">(</span>object<span class="token punctuation">)</span>
+		os<span class="token punctuation">.</span><span class="token function">shutdown</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+	<span class="token keyword">end</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">&gt;</span> GUI_BUTTON
+</code></pre>
+<p>this will make a green button at 1,1 with w,h 3 that will shut the pc down when pressed</p>
+<p>theese functions return their own object they just create but you can access them using the <code>gui</code> table</p>
+<pre class=" language-lua"><code class="prism  language-lua">GUI_OBJECT<span class="token punctuation">.</span>gui<span class="token punctuation">.</span><span class="token operator">&lt;</span>type<span class="token operator">&gt;</span><span class="token punctuation">.</span><span class="token operator">&lt;</span>name<span class="token operator">&gt;</span> <span class="token operator">-</span><span class="token operator">&gt;</span> GUI_ELEMENT_OBJECT
+</code></pre>
+<h1 id="section-3"></h1>
+<p><strong>USAGE OF UPDATE</strong></p>
+<p>the update function is used to actuall make you GUI work by well… updating its data and states/graphics<br>
+the functions has 4 arguments but you dont wanna touch the last 2. those are used internally for reccursive objects</p>
+<p>but if you are intressted you can make custom event handler by setting is_child to true and inputting your<br>
+event in to the data variable. it needs to be processed with the GUI_OBJECT.convert_event function</p>
+<pre class=" language-lua"><code class="prism  language-lua">GUI_OBJECT<span class="token punctuation">.</span><span class="token function">convert_event</span><span class="token punctuation">(</span>event_name<span class="token punctuation">,</span>event1<span class="token punctuation">,</span>event2<span class="token punctuation">,</span>event3<span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">&gt;</span> DATA_EVENT
+</code></pre>
+<pre class=" language-lua"><code class="prism  language-lua">GUI_OBJECT<span class="token punctuation">.</span><span class="token function">update</span><span class="token punctuation">(</span><span class="token punctuation">[</span>timeout<span class="token punctuation">:</span> number_any<span class="token punctuation">,</span>visible<span class="token punctuation">:</span> boolean<span class="token punctuation">,</span>is_child<span class="token punctuation">:</span> boolean<span class="token punctuation">,</span>data<span class="token punctuation">:</span> table<span class="token punctuation">]</span><span class="token punctuation">)</span>
+</code></pre>
+<p>if no arguments are provided this function will yield until it gets an event<br>
+if you want to just update it wihnout waiting so graphic side shows up you can do</p>
+<pre class=" language-lua"><code class="prism  language-lua">GUI_OBJECT<span class="token punctuation">.</span><span class="token function">update</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span>
+</code></pre>
+<p>this will be an example with our previous shutdown button code and what i usualy use</p>
+<pre class=" language-lua"><code class="prism  language-lua"><span class="token operator">&lt;</span>GUI object definitions<span class="token operator">&gt;</span>
+<span class="token keyword">local</span> <span class="token keyword">function</span> <span class="token function">update_thread</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+	GUI_OBJECT<span class="token punctuation">.</span><span class="token function">update</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span> <span class="token comment">--loads the textures imidietly on load</span>
+	<span class="token keyword">while</span> <span class="token keyword">true</span> <span class="token keyword">do</span>
+		GUI_OBJECT<span class="token punctuation">.</span><span class="token function">update</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token comment">--listens for events and updates the actuall GUI</span>
+	<span class="token keyword">end</span>
+<span class="token keyword">end</span>
+<span class="token keyword">local</span> <span class="token keyword">function</span> <span class="token function">code_main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+	<span class="token comment">--your other code</span>
+<span class="token keyword">end</span>
+parallel<span class="token punctuation">.</span><span class="token function">waitForAll</span><span class="token punctuation">(</span>update_thread<span class="token punctuation">,</span>code_main<span class="token punctuation">)</span>
+</code></pre>
+<p>this is pretty good way to update your GUI</p>
+<h1 id="section-4"></h1>
+<h1 id="object-documentation">OBJECT DOCUMENTATION</h1>
+<p>here i will be showing how diffirent objects act and what inputs  they should have<br>
+first lets set some basics if i say POS i mean you should have 4 values in it x,y,width,height<br>
+note that XY is always relative to the object you are writing it into. not the terminal<br>
+all arguments are optional but some objects might not work wihnout them</p>
+<p>all objects also need a name ! 2 objects of the same type cant have a same name</p>
+<p>also when i say BASE i mean things theese things</p>
+<pre class=" language-css"><code class="prism  language-css"><span class="token property">btns</span><span class="token punctuation">:</span>LUT -table setting what button clicks to react to
+<span class="token property">react_to_events</span><span class="token punctuation">:</span>LUT -what events should this react to <span class="token punctuation">(</span>dont change<span class="token punctuation">)</span>
+<span class="token property">visible</span><span class="token punctuation">:</span>BOOL -should this object be drawn
+<span class="token property">reactive</span><span class="token punctuation">:</span>BOOL -should this object be responsive
+</code></pre>
+<p>if you see object written inside a function it probably means the object self so it can edit its own data.</p>
+<h2 id="text"><strong>text</strong></h2>
+<p>this object is special since it cant be drawn/generated with the create table<br>
+instead it gets made using the GUI_OBJECT.text  function<br>
+text can be used by other function to be displayed. text object stores various usefull text data</p>
+<pre class=" language-css"><code class="prism  language-css"><span class="token property">text</span><span class="token punctuation">:</span>STRING 		-the text on this text object
+<span class="token property">centered</span><span class="token punctuation">:</span>BOOL		-should this text be centered
+<span class="token property">x</span><span class="token punctuation">:</span>NUMBER 			-x cordinate
+<span class="token property">y</span><span class="token punctuation">:</span>NUMBER 			-y cordinate
+<span class="token property">offset_x</span><span class="token punctuation">:</span>NUMBER 	-offset on the x cordinate, useful for controling centering
+<span class="token property">offset_y</span><span class="token punctuation">:</span>NUMBER 	-offset on the y cordinate, useful for controling centering
+<span class="token property">blit</span><span class="token punctuation">:</span>TABLE 			-table that stores the colors for the text
+blit table <span class="token property">style</span><span class="token punctuation">:</span> key <span class="token number">1</span> == <span class="token property">text_color</span><span class="token punctuation">:</span>STRING,key <span class="token number">2</span> == <span class="token property">background_color</span><span class="token punctuation">:</span>STRING
+</code></pre>
+<h2 id="button"><strong>button</strong></h2>
+<p>a button as we talked about earlier is an simple object that runs the on_execute event function when<br>
+clicked, theese  buttons can be textured as most things there using nimg images<br>
+arguments</p>
+<pre class=" language-css"><code class="prism  language-css"><span class="token property">name</span><span class="token punctuation">:</span>STRING 							-name of this object in memory
+<span class="token property">POS</span><span class="token punctuation">:</span>NUMBERS 							-stores the location data of this object
+<span class="token property">BASE</span><span class="token punctuation">:</span>BASE								-basic object data
+<span class="token property">on_click</span><span class="token punctuation">:</span>EVENT_<span class="token function">FUNCTION</span><span class="token punctuation">(</span>object,event<span class="token punctuation">)</span>	-function executed when button gets clicked
+<span class="token property">background_color</span><span class="token punctuation">:</span>NUMBER 				-color of the button or bg of the texture
+<span class="token property">text_color</span><span class="token punctuation">:</span>NUMBER 						-color of text if any used
+<span class="token property">symbol</span><span class="token punctuation">:</span>STRING 							-what symbol to draw with
+<span class="token property">tex</span><span class="token punctuation">:</span>GUI_TEXTURE							-texture placed on the object
+<span class="token property">text</span><span class="token punctuation">:</span>GUI_TEXT							-what text should be drawn on the button
+</code></pre>
+<p>-&gt; BUTTON_ELEMENT</p>
+<h2 id="switch"><strong>switch</strong></h2>
+<p>switch is basically the same as an button but it keeps its state so you can read it and do whatever you want<br>
+it has the advantage it can me turned on/off and use diffirent textures for those states</p>
+<pre class=" language-css"><code class="prism  language-css"><span class="token property">name</span><span class="token punctuation">:</span>STRING 									-name of this object in memory
+<span class="token property">POS</span><span class="token punctuation">:</span>NUMBERS 									-stores the location data of this object
+<span class="token property">BASE</span><span class="token punctuation">:</span>BASE										-basic object data
+<span class="token property">background_color</span><span class="token punctuation">:</span>NUMBER 						-color of the button or bg of the texture
+<span class="token property">background_color_on</span><span class="token punctuation">:</span>NUMBER 						-color of the button or bg of the texture when on
+<span class="token property">text_color</span><span class="token punctuation">:</span>NUMBER 								-color of text if any used
+<span class="token property">text_color</span><span class="token punctuation">:</span>NUMBER 								-color of text if any used when on
+<span class="token property">symbol</span><span class="token punctuation">:</span>STRING 									-what symbol to draw with
+<span class="token property">tex</span><span class="token punctuation">:</span>GUI_TEXTURE									-texture placed on the object
+<span class="token property">tex</span><span class="token punctuation">:</span>GUI_TEXTURE									-texture placed on the object when on
+<span class="token property">text</span><span class="token punctuation">:</span>GUI_TEXT									-what text should be drawn on the button
+<span class="token property">text_on</span><span class="token punctuation">:</span>GUI_TEXT								-what text should be drawn on the button when on
+<span class="token property">on_change_state</span><span class="token punctuation">:</span>EVENT_<span class="token function">FUNCTION</span><span class="token punctuation">(</span>object,event<span class="token punctuation">)</span>	-called when switch changes state
+<span class="token property">value</span><span class="token punctuation">:</span>BOOL										-the state of the switch
+</code></pre>
+<p>-&gt; SWITCH_ELEMENT</p>
+<h2 id="progressbar"><strong>progressbar</strong></h2>
+<p>progress bars are a great way to show state/progress in your program thats why  i added simple<br>
+textured progress bars<br>
+progress bars can have 4 dirrections<br>
+“left-right”, “right-left”, “bottom-top”, “top-bottom”</p>
+<pre class=" language-css"><code class="prism  language-css"><span class="token property">name</span><span class="token punctuation">:</span>STRING 				-name of this object in memory
+<span class="token property">POS</span><span class="token punctuation">:</span>NUMBERS 				-stores the location data of this object
+<span class="token property">BASE</span><span class="token punctuation">:</span>BASE					-basic object data
+<span class="token property">fg</span><span class="token punctuation">:</span>NUMBER_COLOR				-color of the filled up area <span class="token punctuation">(</span>foreground<span class="token punctuation">)</span>
+<span class="token property">bg</span><span class="token punctuation">:</span>NUMBER_COLOR				-color of the empty area <span class="token punctuation">(</span>background<span class="token punctuation">)</span>
+<span class="token property">tex</span><span class="token punctuation">:</span>GUI_TEXTURE				-texture to put on the filled progress bar
+<span class="token property">direction</span><span class="token punctuation">:</span>PB_DIRECTION		-what way should the progress bar move in
+<span class="token property">value</span><span class="token punctuation">:</span>NUMBER_PERCENT		-how many percent <span class="token number">0</span>-<span class="token number">100</span> should the bar be filled
+</code></pre>
+<p>-&gt; PROGRESSBAR_ELEMENT</p>
+<h2 id="frame"><strong>frame</strong></h2>
+<p>frames are very nice for creating a lot of things ! since they can be customised a lot<br>
+you can use them to make OS like windows/tabs,sliders movable buttons and movable term windows<br>
+super simply !</p>
+<pre class=" language-css"><code class="prism  language-css"><span class="token property">name</span><span class="token punctuation">:</span>STRING 									-name of this object in memory
+<span class="token property">POS</span><span class="token punctuation">:</span>NUMBERS 									-stores the location data of this object
+<span class="token property">BASE</span><span class="token punctuation">:</span>BASE										-basic object data
+<span class="token property">dragger</span><span class="token punctuation">:</span><span class="token property">DRAGGER_ELEMENT</span><span class="token punctuation">:</span>table					-the dragging field definition for the frame
+<span class="token property">dragged</span><span class="token punctuation">:</span>BOOL									-says if the object is currently dragged
+<span class="token property">dragable</span><span class="token punctuation">:</span>BOOL									-sets if this object can be dragged at all
+<span class="token property">on_move</span><span class="token punctuation">:</span>EVENT_<span class="token function">FUNCTION</span><span class="token punctuation">(</span>object,<span class="token property">new_pos</span><span class="token punctuation">:</span>vector<span class="token punctuation">)</span>	-happens when frame changes position
+<span class="token property">on_any</span><span class="token punctuation">:</span>EVENT_<span class="token function">FUNCTION</span><span class="token punctuation">(</span>object,event<span class="token punctuation">)</span>				-called every frame updates
+<span class="token property">on_select</span><span class="token punctuation">:</span>EVENT_<span class="token function">FUNCTION</span><span class="token punctuation">(</span>object,event<span class="token punctuation">)</span>			-called when you start dragging a frame
+<span class="token property">on_graphic</span><span class="token punctuation">:</span>EVENT_<span class="token function">FUNCTION</span><span class="token punctuation">(</span>object<span class="token punctuation">)</span>				-called in  the graphic stage
+</code></pre>
+<p>DRAGGER_ELEMENT</p>
+<ul>
+<li>dragger element is its own POS element but its relative to the window you are currently setting it to</li>
+</ul>
+<pre class=" language-css"><code class="prism  language-css">	<span class="token punctuation">{</span>
+		<span class="token property">x</span><span class="token punctuation">:</span>NUMBER 		-the x value from the left top corner of the frame,
+		<span class="token property">y</span><span class="token punctuation">:</span>NUMBER 		-the y value from the left top corner of the frame,
+		<span class="token property">width</span><span class="token punctuation">:</span>NUMBER 	-width of this dragger
+		<span class="token property">height</span><span class="token punctuation">:</span>NUMBER	-height of this dragger
+	<span class="token punctuation">}</span>
+</code></pre>
+<h3 id="on_move-event--function">on_move EVENT  function</h3>
+<pre><code>this function is special in the fact that if you have it return true
+it will not have the frame run its own interated move function
+which gives you full control over the movement
+
+for example this is an on_move function that will prevent the frame
+from being pushed out the screen
+</code></pre>
+<pre class=" language-lua"><code class="prism  language-lua">	<span class="token keyword">function</span><span class="token punctuation">(</span>object<span class="token punctuation">,</span>pos<span class="token punctuation">)</span>
+        <span class="token keyword">local</span> term <span class="token operator">=</span> object<span class="token punctuation">.</span>canvas<span class="token punctuation">.</span>term_object
+        <span class="token keyword">local</span> w<span class="token punctuation">,</span>h <span class="token operator">=</span> term<span class="token punctuation">.</span><span class="token function">getSize</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+        object<span class="token punctuation">.</span>window<span class="token punctuation">.</span><span class="token function">reposition</span><span class="token punctuation">(</span>
+            math<span class="token punctuation">.</span><span class="token function">max</span><span class="token punctuation">(</span>
+                math<span class="token punctuation">.</span><span class="token function">min</span><span class="token punctuation">(</span>
+                    pos<span class="token punctuation">.</span>x<span class="token operator">+</span>object<span class="token punctuation">.</span>positioning<span class="token punctuation">.</span>width<span class="token punctuation">,</span>
+                    w<span class="token operator">+</span><span class="token number">1</span>
+                <span class="token punctuation">)</span><span class="token operator">-</span>object<span class="token punctuation">.</span>positioning<span class="token punctuation">.</span>width<span class="token punctuation">,</span><span class="token number">1</span>
+            <span class="token punctuation">)</span><span class="token punctuation">,</span>
+            math<span class="token punctuation">.</span><span class="token function">max</span><span class="token punctuation">(</span>
+                math<span class="token punctuation">.</span><span class="token function">min</span><span class="token punctuation">(</span>
+                    pos<span class="token punctuation">.</span>y<span class="token operator">+</span>object<span class="token punctuation">.</span>positioning<span class="token punctuation">.</span>height<span class="token punctuation">,</span>
+                    h<span class="token operator">+</span><span class="token number">1</span>
+                <span class="token punctuation">)</span><span class="token operator">-</span>object<span class="token punctuation">.</span>positioning<span class="token punctuation">.</span>height<span class="token punctuation">,</span><span class="token number">1</span>
+            <span class="token punctuation">)</span>
+        <span class="token punctuation">)</span>
+        <span class="token keyword">return</span> <span class="token keyword">true</span>
+    <span class="token keyword">end</span>
+</code></pre>
+<p>-&gt; FRAME_ELEMENT<br>
+frame element has 2 key values. those are the <code>window</code> and <code>child</code> values<br>
+window is just its own term object inside the frame!<br>
+so you can do</p>
+<pre class=" language-lua"><code class="prism  language-lua">FRAME_WINDOW<span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span><span class="token string">"test"</span><span class="token punctuation">)</span>
+</code></pre>
+<p>acts as any generic terminal element<br>
+what the child is its the frames own GUI_OBJECT you can use its create functions to write into<br>
+you dont need ot update it. update for its parrent object handles it<br>
+which is pretty epic :D</p>
+<h1 id="simple--object--api--explanation"><strong>SIMPLE  OBJECT  API  EXPLANATION</strong></h1>
+<p>every object has 3 main files</p>
+<ul>
+<li>object.lua</li>
+<li>logic.lua</li>
+<li>graphic.lua</li>
+</ul>
+<p>all of theese files have their base that they need to work.</p>
+<pre class=" language-lua"><code class="prism  language-lua"><span class="token operator">&lt;</span>object<span class="token punctuation">.</span>lua base<span class="token operator">&gt;</span>
+<span class="token keyword">return</span> <span class="token keyword">function</span><span class="token punctuation">(</span>object<span class="token punctuation">,</span>input_data<span class="token punctuation">)</span>
+    <span class="token keyword">local</span> btn <span class="token operator">=</span> <span class="token punctuation">{</span>
+        name<span class="token operator">=</span>input_data<span class="token punctuation">.</span>name <span class="token keyword">or</span> <span class="token string">""</span><span class="token punctuation">,</span>
+        visible<span class="token operator">=</span><span class="token punctuation">(</span>input_data<span class="token punctuation">.</span>visible <span class="token operator">~=</span> <span class="token keyword">nil</span><span class="token punctuation">)</span> <span class="token keyword">and</span> input_data<span class="token punctuation">.</span>visible <span class="token keyword">or</span> <span class="token keyword">true</span><span class="token punctuation">,</span>
+        reactive<span class="token operator">=</span><span class="token punctuation">(</span>input_data<span class="token punctuation">.</span>reactive <span class="token operator">~=</span> <span class="token keyword">nil</span><span class="token punctuation">)</span> <span class="token keyword">and</span> input_data<span class="token punctuation">.</span>reactive <span class="token keyword">or</span> <span class="token keyword">true</span><span class="token punctuation">,</span>
+        react_to_events<span class="token operator">=</span><span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token comment">--a look up table with the event names</span>
+        <span class="token comment">--btn={} --optional LUT table with the keys this object should respond to</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">return</span> btn
+<span class="token keyword">end</span>
+</code></pre>
+<pre class=" language-lua"><code class="prism  language-lua"><span class="token operator">&lt;</span>control<span class="token punctuation">.</span>lua base<span class="token operator">&gt;</span>
+<span class="token keyword">return</span> <span class="token keyword">function</span><span class="token punctuation">(</span>object<span class="token punctuation">,</span>event<span class="token punctuation">)</span>
+<span class="token keyword">end</span>
+</code></pre>
+<pre class=" language-lua"><code class="prism  language-lua"><span class="token operator">&lt;</span>graphic<span class="token punctuation">.</span>lua base<span class="token operator">&gt;</span>
+<span class="token keyword">return</span> <span class="token keyword">function</span><span class="token punctuation">(</span>object<span class="token punctuation">)</span>
+<span class="token keyword">end</span>
+</code></pre>
+<p>first thing is that you need to make your object.lua which is gonna be what you are gonna use to<br>
+build the actuall GUI object</p>
+<p>then logic.lua of all files gets called once that finishes graphic.lua of all files gets called<br>
+no need to handle visibility checking and reactivity checking yourselfs. the core api handles that for you</p>
+<p>if you need to access the terminal the object is on you can do</p>
+<pre class=" language-lua"><code class="prism  language-lua">	<span class="token keyword">local</span> term <span class="token operator">=</span> object<span class="token punctuation">.</span>canvas<span class="token punctuation">.</span>term_object
+</code></pre>
+<p>you can also read all the data from the object.</p>
+<p>the event you get in theh control section will be diffirent depending on what type of event you are checking for</p>
+<p>here is an table with what the event will have depending on the event that happened</p>
+
+<table>
+<thead>
+<tr>
+<th>event-output table</th>
+<th>name:</th>
+<th>e1</th>
+<th>e2</th>
+<th>e3</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>monitor_touch</td>
+<td>name=name</td>
+<td>monitor</td>
+<td>x</td>
+<td>y</td>
+</tr>
+<tr>
+<td>mouse_click/mouse_up</td>
+<td>name=name</td>
+<td>button</td>
+<td>x</td>
+<td>y</td>
+</tr>
+<tr>
+<td>mouse_drag</td>
+<td>name=name</td>
+<td>button</td>
+<td>x</td>
+<td>y</td>
+</tr>
+<tr>
+<td>mouse_scroll</td>
+<td>name=name</td>
+<td>direction</td>
+<td>x</td>
+<td>y</td>
+</tr>
+</tbody>
+</table><h1 id="oh-well-i-think-this-is-the-end.-i-hope-you-like-my-api-d"><strong>oh well i think this is the end. i hope you like my API :D</strong></h1>
+</div>
+</body>
+
+</html>
