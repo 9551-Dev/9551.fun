@@ -94,6 +94,7 @@ span.annotation {
   font-family: Fira, Arial, Geneva, sans-serif;
 }
 
+
 #container {
   position: relative;
   padding: 1em;
@@ -120,7 +121,7 @@ span.types:after {
 
 .type {
   font-weight: bold;
-  color: #FFFFFF;
+  color: #5555FF;
   font-style: italic;
 }
 
@@ -182,18 +183,18 @@ h4 {
 
 a:link {
   font-weight: normal;
-  color: #FFFFFF;
+  color: #5555FF;
   text-decoration: none;
 }
 
 a:visited {
   font-weight: normal;
-  color: #BBBBBB;
+  color: #BBBBFF;
   text-decoration: none;
 }
 
 a:link:hover {
-  text-decoration: underline;
+  background-color: #444444;
 }
 
 hr {
@@ -503,6 +504,7 @@ table.function_list td.name {
 table.module_list td.summary,
 table.function_list td.summary {
   width: 100%;
+  color: #FFFFFF !important;
 }
 
 dl.table dt,
@@ -567,7 +569,7 @@ pre .library {
 pre .marker {
   color: #916b5e;
   background: #fedc56;
- font-weight: bold;
+  font-weight: bold;
 }
 
 pre .string {
@@ -621,7 +623,7 @@ caption {
 caption {
   background-color:  #5000F0;
   border-bottom: none;
-}x
+}
 
 td {
   vertical-align: top;
