@@ -98,6 +98,7 @@ span.annotation {
 #container {
   position: relative;
   padding: 1em;
+  padding-left: 17%;
   background-color: #222222;
 }
 
