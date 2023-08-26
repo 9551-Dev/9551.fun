@@ -1,2 +1,2 @@
 --- library for semantic versioning
--- @module[kind=apis] c3d
+-- @module[kind=apis] version
