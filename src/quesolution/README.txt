@@ -5,4 +5,4 @@ you also need developer mode enabled !
 
 for setup help message me on discord!
 
-- " !                       9551Dev#9551"
+- " !                       dev9551"
