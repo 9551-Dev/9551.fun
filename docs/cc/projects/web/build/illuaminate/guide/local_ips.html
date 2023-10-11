@@ -1,0 +1,74 @@
+<!DOCTYPE html><html><head><meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" /><title>Allowing access to local IPs</title><meta property="og:title" content="Allowing access to local IPs" /><meta property="og:type" content="website" /><meta name="description" content="By default, ComputerCraft blocks access to local IP addresses for security." /><meta property="og:description" content="By default, ComputerCraft blocks access to local IP addresses for security." /><meta property="og:image" content="https://devvie.cc/docs/cc/pack.png" /><meta property="og:site_name" content="CC: Tweaked" /><meta name="illuaminate:index" content="../index.json" /><link rel="stylesheet" href="../main.css?v=5ab962eb" type="text/css" /><!--
+SPDX-FileCopyrightText: 2020 The CC: Tweaked Developers
+
+SPDX-License-Identifier: MPL-2.0
+-->
+
+<meta name="theme-color" content="#c8d87c"></head><body><nav id="nav"><button id="nav-reveal" type="button">&#9776;</button><h1><a href=".././"><img src="../pack.png" alt="CC: Tweaked" /></a></h1><div class="nav-links"><h2 class="collapsed" tabindex="0">Globals</h2><ul><li><a href="../module/_G.html" class="sidebar-link">_G</a></li><li><a href="../module/colors.html" class="sidebar-link">colors</a></li><li><a href="../module/colours.html" class="sidebar-link">colours</a></li><li><a href="../module/commands.html" class="sidebar-link">commands</a></li><li><a href="../module/disk.html" class="sidebar-link">disk</a></li><li><a href="../module/fs.html" class="sidebar-link">fs</a></li><li><a href="../module/gps.html" class="sidebar-link">gps</a></li><li><a href="../module/help.html" class="sidebar-link">help</a></li><li><a href="../module/http.html" class="sidebar-link">http</a></li><li><a href="../module/io.html" class="sidebar-link">io</a></li><li><a href="../module/keys.html" class="sidebar-link">keys</a></li><li><a href="../module/multishell.html" class="sidebar-link">multishell</a></li><li><a href="../module/os.html" class="sidebar-link">os</a></li><li><a href="../module/paintutils.html" class="sidebar-link">paintutils</a></li><li><a href="../module/parallel.html" class="sidebar-link">parallel</a></li><li><a href="../module/peripheral.html" class="sidebar-link">peripheral</a></li><li><a href="../module/rednet.html" class="sidebar-link">rednet</a></li><li><a href="../module/settings.html" class="sidebar-link">settings</a></li><li><a href="../module/shell.html" class="sidebar-link">shell</a></li><li><a href="../module/term.html" class="sidebar-link">term</a></li><li><a href="../module/textutils.html" class="sidebar-link">textutils</a></li><li><a href="../module/turtle.html" class="sidebar-link">turtle</a></li><li><a href="../module/vector.html" class="sidebar-link">vector</a></li><li><a href="../module/window.html" class="sidebar-link">window</a></li></ul><h2 class="collapsed" tabindex="0">Modules</h2><ul><li><a href="../library/cc.audio.dfpwm.html" class="sidebar-link">cc.audio.dfpwm</a></li><li><a href="../library/cc.completion.html" class="sidebar-link">cc.completion</a></li><li><a href="../library/cc.expect.html" class="sidebar-link">cc.expect</a></li><li><a href="../library/cc.image.nft.html" class="sidebar-link">cc.image.nft</a></li><li><a href="../library/cc.pretty.html" class="sidebar-link">cc.pretty</a></li><li><a href="../library/cc.require.html" class="sidebar-link">cc.require</a></li><li><a href="../library/cc.shell.completion.html" class="sidebar-link">cc.shell.completion</a></li><li><a href="../library/cc.strings.html" class="sidebar-link">cc.strings</a></li></ul><h2 class="collapsed" tabindex="0">Events</h2><ul><li><a href="../event/alarm.html" class="sidebar-link">alarm</a></li><li><a href="../event/char.html" class="sidebar-link">char</a></li><li><a href="../event/computer_command.html" class="sidebar-link">computer_command</a></li><li><a href="../event/disk.html" class="sidebar-link">disk</a></li><li><a href="../event/disk_eject.html" class="sidebar-link">disk_eject</a></li><li><a href="../event/file_transfer.html" class="sidebar-link">file_transfer</a></li><li><a href="../event/http_check.html" class="sidebar-link">http_check</a></li><li><a href="../event/http_failure.html" class="sidebar-link">http_failure</a></li><li><a href="../event/http_success.html" class="sidebar-link">http_success</a></li><li><a href="../event/key.html" class="sidebar-link">key</a></li><li><a href="../event/key_up.html" class="sidebar-link">key_up</a></li><li><a href="../event/modem_message.html" class="sidebar-link">modem_message</a></li><li><a href="../event/monitor_resize.html" class="sidebar-link">monitor_resize</a></li><li><a href="../event/monitor_touch.html" class="sidebar-link">monitor_touch</a></li><li><a href="../event/mouse_click.html" class="sidebar-link">mouse_click</a></li><li><a href="../event/mouse_drag.html" class="sidebar-link">mouse_drag</a></li><li><a href="../event/mouse_scroll.html" class="sidebar-link">mouse_scroll</a></li><li><a href="../event/mouse_up.html" class="sidebar-link">mouse_up</a></li><li><a href="../event/paste.html" class="sidebar-link">paste</a></li><li><a href="../event/peripheral.html" class="sidebar-link">peripheral</a></li><li><a href="../event/peripheral_detach.html" class="sidebar-link">peripheral_detach</a></li><li><a href="../event/rednet_message.html" class="sidebar-link">rednet_message</a></li><li><a href="../event/redstone.html" class="sidebar-link">redstone</a></li><li><a href="../event/speaker_audio_empty.html" class="sidebar-link">speaker_audio_empty</a></li><li><a href="../event/task_complete.html" class="sidebar-link">task_complete</a></li><li><a href="../event/term_resize.html" class="sidebar-link">term_resize</a></li><li><a href="../event/terminate.html" class="sidebar-link">terminate</a></li><li><a href="../event/timer.html" class="sidebar-link">timer</a></li><li><a href="../event/turtle_inventory.html" class="sidebar-link">turtle_inventory</a></li><li><a href="../event/websocket_closed.html" class="sidebar-link">websocket_closed</a></li><li><a href="../event/websocket_failure.html" class="sidebar-link">websocket_failure</a></li><li><a href="../event/websocket_message.html" class="sidebar-link">websocket_message</a></li><li><a href="../event/websocket_success.html" class="sidebar-link">websocket_success</a></li></ul><h2 tabindex="0">Guides</h2><ul><li><a href="gps_setup.html" class="sidebar-link">Setting up GPS</a></li><li><strong class="sidebar-link selected">Allowing access to local IPs</strong></li><li><a href="speaker_audio.html" class="sidebar-link">Playing audio with speakers</a></li><li><a href="using_require.html" class="sidebar-link">Reusing code with require</a></li></ul><h2 class="collapsed" tabindex="0">Reference</h2><ul><li><a href="../reference/feature_compat.html" class="sidebar-link">Lua 5.2/5.3 features in CC: Tweaked</a></li></ul></div></nav><div id="main"><div id="search-form" role="form"><input id="search-box" type="text" placeholder="Search..." autocomplete="off" tabindex="0"></input><div id="search-results"></div></div><section id="content"><h1>Allowing access to local IPs</h1><!--
+SPDX-FileCopyrightText: 2022 The CC: Tweaked Developers
+
+SPDX-License-Identifier: MPL-2.0
+-->
+<p>By default, ComputerCraft blocks access to local IP addresses for security. This means you can't normally access any
+HTTP server running on your computer. However, this may be useful for testing programs without having a remote
+server. You can unblock these IPs in the ComputerCraft config.</p>
+<ul>
+<li><a href="#cc-1.87.0">Minecraft 1.13 and later, CC:T 1.87.0 and later</a></li>
+<li><a href="#cc-1.86.2">Minecraft 1.13 and later, CC:T 1.86.2 and earlier</a></li>
+<li><a href="#mc-1.12">Minecraft 1.12.2 and earlier</a></li>
+</ul>
+<h2 id="cc-1.87.0"><a class="anchor" aria-hidden="true" href="#cc-1.87.0"></a>Minecraft 1.13 and later, CC:T 1.87.0 and later</h2>
+<p>The configuration file can be located at <code>serverconfig/computercraft-server.toml</code> inside the world folder on either
+single-player or multiplayer. Look for lines that look like this:</p>
+<pre class="highlight language-toml">#A list of rules which control behaviour of the &quot;http&quot; API for specific domains or IPs.
+#Each rule is an item with a 'host' to match against, and a series of properties. The host may be a domain name (&quot;pastebin.com&quot;),
+#wildcard (&quot;*.pastebin.com&quot;) or CIDR notation (&quot;127.0.0.0/8&quot;). If no rules, the domain is blocked.
+[[http.rules]]
+    host = &quot;$private&quot;
+    action = &quot;deny&quot;</pre><p>On 1.95.0 and later, this will be a single entry with <code>host = &quot;$private&quot;</code>. On earlier versions, this will be a number of
+<code>[[http.rules]]</code> with various IP addresses. You will want to remove all of the <code>[[http.rules]]</code> entries that have
+<code>action = &quot;deny&quot;</code>. Then save the file and relaunch Minecraft (Server).</p>
+<p>Here's what it should look like after removing:</p>
+<pre class="highlight language-toml">#A list of rules which control behaviour of the &quot;http&quot; API for specific domains or IPs.
+#Each rule is an item with a 'host' to match against, and a series of properties. The host may be a domain name (&quot;pastebin.com&quot;),
+#wildcard (&quot;*.pastebin.com&quot;) or CIDR notation (&quot;127.0.0.0/8&quot;). If no rules, the domain is blocked.
+[[http.rules]]
+    #The maximum size (in bytes) that a computer can send or receive in one websocket packet.
+    max_websocket_message = 131072
+    host = &quot;*&quot;
+    #The maximum size (in bytes) that a computer can upload in a single request. This includes headers and POST text.
+    max_upload = 4194304
+    action = &quot;allow&quot;
+    #The maximum size (in bytes) that a computer can download in a single request. Note that responses may receive more data than allowed, but this data will not be returned to the client.
+    max_download = 16777216
+    #The period of time (in milliseconds) to wait before a HTTP request times out. Set to 0 for unlimited.
+    timeout = 30000</pre><h2 id="cc-1.86.2"><a class="anchor" aria-hidden="true" href="#cc-1.86.2"></a>Minecraft 1.13 and later, CC:T 1.86.2 and earlier</h2>
+<p>The configuration file for singleplayer is at <code>.minecraft/config/computercraft-common.toml</code>. Look for lines that look
+like this:</p>
+<pre class="highlight language-toml">#A list of wildcards for domains or IP ranges that cannot be accessed through the &quot;http&quot; API on Computers.
+#If this is empty then all whitelisted domains will be accessible. Example: &quot;*.github.com&quot; will block access to all subdomains of github.com.
+#You can use domain names (&quot;pastebin.com&quot;), wildcards (&quot;*.pastebin.com&quot;) or CIDR notation (&quot;127.0.0.0/8&quot;).
+blacklist = [&quot;127.0.0.0/8&quot;, &quot;10.0.0.0/8&quot;, &quot;172.16.0.0/12&quot;, &quot;192.168.0.0/16&quot;, &quot;fd00::/8&quot;]</pre><p>Remove everything inside the array, leaving the last line as <code>blacklist = []</code>. Then save the file and relaunch Minecraft.</p>
+<p>Here's what it should look like after removing:</p>
+<pre class="highlight language-toml">#A list of wildcards for domains or IP ranges that cannot be accessed through the &quot;http&quot; API on Computers.
+#If this is empty then all whitelisted domains will be accessible. Example: &quot;*.github.com&quot; will block access to all subdomains of github.com.
+#You can use domain names (&quot;pastebin.com&quot;), wildcards (&quot;*.pastebin.com&quot;) or CIDR notation (&quot;127.0.0.0/8&quot;).
+blacklist = []</pre><h2 id="mc-1.12"><a class="anchor" aria-hidden="true" href="#mc-1.12"></a>Minecraft 1.12.2 and earlier</h2>
+<p>On singleplayer, the configuration file is located at <code>.minecraft\config\ComputerCraft.cfg</code>. On multiplayer, the
+configuration file is located at <code>&lt;server folder&gt;\config\ComputerCraft.cfg</code>. Look for lines that look like this:</p>
+<pre class="highlight language-ini"># A list of wildcards for domains or IP ranges that cannot be accessed through the &quot;http&quot; API on Computers.
+# If this is empty then all explicitly allowed domains will be accessible. Example: &quot;*.github.com&quot; will block access to all subdomains of github.com.
+# You can use domain names (&quot;pastebin.com&quot;), wildcards (&quot;*.pastebin.com&quot;) or CIDR notation (&quot;127.0.0.0/8&quot;).
+S:blocked_domains &lt;
+    127.0.0.0/8
+    10.0.0.0/8
+    172.16.0.0/12
+    192.168.0.0/16
+    fd00::/8
+ &gt;</pre><p>Delete everything between the <code>&lt;&gt;</code>, leaving the last line as <code>S:blocked_domains = &lt;&gt;</code>. Then save the file and relaunch
+Minecraft (Server).</p>
+<p>Here's what it should look like after removing:</p>
+<pre class="highlight language-ini"># A list of wildcards for domains or IP ranges that cannot be accessed through the &quot;http&quot; API on Computers.
+# If this is empty then all explicitly allowed domains will be accessible. Example: &quot;*.github.com&quot; will block access to all subdomains of github.com.
+# You can use domain names (&quot;pastebin.com&quot;), wildcards (&quot;*.pastebin.com&quot;) or CIDR notation (&quot;127.0.0.0/8&quot;).
+S:blocked_domains &lt;&gt;</pre></section><footer>Last updated on 2023-10-11</footer></div><div id="search-overlay"></div><script src="../main.js?v=f449c6d1" type="text/javascript" defer=""></script></body></html>

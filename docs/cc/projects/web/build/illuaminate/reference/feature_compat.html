@@ -1,0 +1,419 @@
+<!DOCTYPE html><html><head><meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" /><title>Lua 5.2/5.3 features in CC: Tweaked</title><meta property="og:title" content="Lua 5.2/5.3 features in CC: Tweaked" /><meta property="og:type" content="website" /><meta name="description" content="CC: Tweaked is based off of the Cobalt Lua runtime, which uses Lua 5." /><meta property="og:description" content="CC: Tweaked is based off of the Cobalt Lua runtime, which uses Lua 5." /><meta property="og:image" content="https://devvie.cc/docs/cc/pack.png" /><meta property="og:site_name" content="CC: Tweaked" /><meta name="illuaminate:index" content="../index.json" /><link rel="stylesheet" href="../main.css?v=5ab962eb" type="text/css" /><!--
+SPDX-FileCopyrightText: 2020 The CC: Tweaked Developers
+
+SPDX-License-Identifier: MPL-2.0
+-->
+
+<meta name="theme-color" content="#c8d87c"></head><body><nav id="nav"><button id="nav-reveal" type="button">&#9776;</button><h1><a href=".././"><img src="../pack.png" alt="CC: Tweaked" /></a></h1><div class="nav-links"><h2 class="collapsed" tabindex="0">Globals</h2><ul><li><a href="../module/_G.html" class="sidebar-link">_G</a></li><li><a href="../module/colors.html" class="sidebar-link">colors</a></li><li><a href="../module/colours.html" class="sidebar-link">colours</a></li><li><a href="../module/commands.html" class="sidebar-link">commands</a></li><li><a href="../module/disk.html" class="sidebar-link">disk</a></li><li><a href="../module/fs.html" class="sidebar-link">fs</a></li><li><a href="../module/gps.html" class="sidebar-link">gps</a></li><li><a href="../module/help.html" class="sidebar-link">help</a></li><li><a href="../module/http.html" class="sidebar-link">http</a></li><li><a href="../module/io.html" class="sidebar-link">io</a></li><li><a href="../module/keys.html" class="sidebar-link">keys</a></li><li><a href="../module/multishell.html" class="sidebar-link">multishell</a></li><li><a href="../module/os.html" class="sidebar-link">os</a></li><li><a href="../module/paintutils.html" class="sidebar-link">paintutils</a></li><li><a href="../module/parallel.html" class="sidebar-link">parallel</a></li><li><a href="../module/peripheral.html" class="sidebar-link">peripheral</a></li><li><a href="../module/rednet.html" class="sidebar-link">rednet</a></li><li><a href="../module/settings.html" class="sidebar-link">settings</a></li><li><a href="../module/shell.html" class="sidebar-link">shell</a></li><li><a href="../module/term.html" class="sidebar-link">term</a></li><li><a href="../module/textutils.html" class="sidebar-link">textutils</a></li><li><a href="../module/turtle.html" class="sidebar-link">turtle</a></li><li><a href="../module/vector.html" class="sidebar-link">vector</a></li><li><a href="../module/window.html" class="sidebar-link">window</a></li></ul><h2 class="collapsed" tabindex="0">Modules</h2><ul><li><a href="../library/cc.audio.dfpwm.html" class="sidebar-link">cc.audio.dfpwm</a></li><li><a href="../library/cc.completion.html" class="sidebar-link">cc.completion</a></li><li><a href="../library/cc.expect.html" class="sidebar-link">cc.expect</a></li><li><a href="../library/cc.image.nft.html" class="sidebar-link">cc.image.nft</a></li><li><a href="../library/cc.pretty.html" class="sidebar-link">cc.pretty</a></li><li><a href="../library/cc.require.html" class="sidebar-link">cc.require</a></li><li><a href="../library/cc.shell.completion.html" class="sidebar-link">cc.shell.completion</a></li><li><a href="../library/cc.strings.html" class="sidebar-link">cc.strings</a></li></ul><h2 class="collapsed" tabindex="0">Events</h2><ul><li><a href="../event/alarm.html" class="sidebar-link">alarm</a></li><li><a href="../event/char.html" class="sidebar-link">char</a></li><li><a href="../event/computer_command.html" class="sidebar-link">computer_command</a></li><li><a href="../event/disk.html" class="sidebar-link">disk</a></li><li><a href="../event/disk_eject.html" class="sidebar-link">disk_eject</a></li><li><a href="../event/file_transfer.html" class="sidebar-link">file_transfer</a></li><li><a href="../event/http_check.html" class="sidebar-link">http_check</a></li><li><a href="../event/http_failure.html" class="sidebar-link">http_failure</a></li><li><a href="../event/http_success.html" class="sidebar-link">http_success</a></li><li><a href="../event/key.html" class="sidebar-link">key</a></li><li><a href="../event/key_up.html" class="sidebar-link">key_up</a></li><li><a href="../event/modem_message.html" class="sidebar-link">modem_message</a></li><li><a href="../event/monitor_resize.html" class="sidebar-link">monitor_resize</a></li><li><a href="../event/monitor_touch.html" class="sidebar-link">monitor_touch</a></li><li><a href="../event/mouse_click.html" class="sidebar-link">mouse_click</a></li><li><a href="../event/mouse_drag.html" class="sidebar-link">mouse_drag</a></li><li><a href="../event/mouse_scroll.html" class="sidebar-link">mouse_scroll</a></li><li><a href="../event/mouse_up.html" class="sidebar-link">mouse_up</a></li><li><a href="../event/paste.html" class="sidebar-link">paste</a></li><li><a href="../event/peripheral.html" class="sidebar-link">peripheral</a></li><li><a href="../event/peripheral_detach.html" class="sidebar-link">peripheral_detach</a></li><li><a href="../event/rednet_message.html" class="sidebar-link">rednet_message</a></li><li><a href="../event/redstone.html" class="sidebar-link">redstone</a></li><li><a href="../event/speaker_audio_empty.html" class="sidebar-link">speaker_audio_empty</a></li><li><a href="../event/task_complete.html" class="sidebar-link">task_complete</a></li><li><a href="../event/term_resize.html" class="sidebar-link">term_resize</a></li><li><a href="../event/terminate.html" class="sidebar-link">terminate</a></li><li><a href="../event/timer.html" class="sidebar-link">timer</a></li><li><a href="../event/turtle_inventory.html" class="sidebar-link">turtle_inventory</a></li><li><a href="../event/websocket_closed.html" class="sidebar-link">websocket_closed</a></li><li><a href="../event/websocket_failure.html" class="sidebar-link">websocket_failure</a></li><li><a href="../event/websocket_message.html" class="sidebar-link">websocket_message</a></li><li><a href="../event/websocket_success.html" class="sidebar-link">websocket_success</a></li></ul><h2 class="collapsed" tabindex="0">Guides</h2><ul><li><a href="../guide/gps_setup.html" class="sidebar-link">Setting up GPS</a></li><li><a href="../guide/local_ips.html" class="sidebar-link">Allowing access to local IPs</a></li><li><a href="../guide/speaker_audio.html" class="sidebar-link">Playing audio with speakers</a></li><li><a href="../guide/using_require.html" class="sidebar-link">Reusing code with require</a></li></ul><h2 tabindex="0">Reference</h2><ul><li><strong class="sidebar-link selected">Lua 5.2/5.3 features in CC: Tweaked</strong></li></ul></div></nav><div id="main"><div id="search-form" role="form"><input id="search-box" type="text" placeholder="Search..." autocomplete="off" tabindex="0"></input><div id="search-results"></div></div><section id="content"><h1>Lua 5.2/5.3 features in CC: Tweaked</h1><!--
+SPDX-FileCopyrightText: 2022 The CC: Tweaked Developers
+
+SPDX-License-Identifier: MPL-2.0
+-->
+<p>CC: Tweaked is based off of the Cobalt Lua runtime, which uses Lua 5.1. However, Cobalt and CC:T implement additional features from Lua 5.2 and 5.3 (as well as some deprecated 5.0 features) that are not available in base 5.1. This page lists all of the compatibility for these newer versions.</p>
+<h2>Lua 5.2</h2>
+<div role="region"><table>
+<tr>
+<th>Feature</th>
+<th>Supported?</th>
+<th>Notes</th>
+</tr>
+<tr>
+<td><code>goto</code>/labels</td>
+<td>❌</td>
+<td></td>
+</tr>
+<tr>
+<td><code>_ENV</code></td>
+<td>🔶</td>
+<td>The <code>_ENV</code> global points to <code>getfenv()</code>, but it cannot be set.</td>
+</tr>
+<tr>
+<td><code>\z</code> escape</td>
+<td>✔</td>
+<td></td>
+</tr>
+<tr>
+<td><code>\xNN</code> escape</td>
+<td>✔</td>
+<td></td>
+</tr>
+<tr>
+<td>Hex literal fractional/exponent parts</td>
+<td>✔</td>
+<td></td>
+</tr>
+<tr>
+<td>Empty statements</td>
+<td>❌</td>
+<td></td>
+</tr>
+<tr>
+<td><code>__len</code> metamethod</td>
+<td>✔</td>
+<td></td>
+</tr>
+<tr>
+<td><code>__ipairs</code> metamethod</td>
+<td>❌</td>
+<td>Deprecated in Lua 5.3. <code>ipairs</code> uses <code>__len</code>/<code>__index</code> instead.</td>
+</tr>
+<tr>
+<td><code>__pairs</code> metamethod</td>
+<td>✔</td>
+<td></td>
+</tr>
+<tr>
+<td><code>bit32</code> library</td>
+<td>✔</td>
+<td></td>
+</tr>
+<tr>
+<td><code>collectgarbage</code> isrunning, generational, incremental options</td>
+<td>❌</td>
+<td><code>collectgarbage</code> does not exist in CC:T.</td>
+</tr>
+<tr>
+<td>New <code>load</code> syntax</td>
+<td>✔</td>
+<td></td>
+</tr>
+<tr>
+<td><code>loadfile</code> mode parameter</td>
+<td>✔</td>
+<td>Supports both 5.1 and 5.2+ syntax.</td>
+</tr>
+<tr>
+<td>Removed <code>loadstring</code></td>
+<td>🔶</td>
+<td>Only if <code>disable_lua51_features</code> is enabled in the configuration.</td>
+</tr>
+<tr>
+<td>Removed <code>getfenv</code>, <code>setfenv</code></td>
+<td>🔶</td>
+<td>Only if <code>disable_lua51_features</code> is enabled in the configuration.</td>
+</tr>
+<tr>
+<td><code>rawlen</code> function</td>
+<td>✔</td>
+<td></td>
+</tr>
+<tr>
+<td>Negative index to <code>select</code></td>
+<td>✔</td>
+<td></td>
+</tr>
+<tr>
+<td>Removed <code>unpack</code></td>
+<td>🔶</td>
+<td>Only if <code>disable_lua51_features</code> is enabled in the configuration.</td>
+</tr>
+<tr>
+<td>Arguments to <code>xpcall</code></td>
+<td>✔</td>
+<td></td>
+</tr>
+<tr>
+<td>Second return value from <code>coroutine.running</code></td>
+<td>✔</td>
+<td></td>
+</tr>
+<tr>
+<td>Removed <code>module</code></td>
+<td>✔</td>
+<td></td>
+</tr>
+<tr>
+<td><code>package.loaders</code> -&gt; <code>package.searchers</code></td>
+<td>❌</td>
+<td></td>
+</tr>
+<tr>
+<td>Second argument to loader functions</td>
+<td>✔</td>
+<td></td>
+</tr>
+<tr>
+<td><code>package.config</code></td>
+<td>✔</td>
+<td></td>
+</tr>
+<tr>
+<td><code>package.searchpath</code></td>
+<td>✔</td>
+<td></td>
+</tr>
+<tr>
+<td>Removed <code>package.seeall</code></td>
+<td>✔</td>
+<td></td>
+</tr>
+<tr>
+<td><code>string.dump</code> on functions with upvalues (blanks them out)</td>
+<td>✔</td>
+<td></td>
+</tr>
+<tr>
+<td><code>string.rep</code> separator</td>
+<td>✔</td>
+<td></td>
+</tr>
+<tr>
+<td><code>%g</code> match group</td>
+<td>❌</td>
+<td></td>
+</tr>
+<tr>
+<td>Removal of <code>%z</code> match group</td>
+<td>❌</td>
+<td></td>
+</tr>
+<tr>
+<td>Removed <code>table.maxn</code></td>
+<td>🔶</td>
+<td>Only if <code>disable_lua51_features</code> is enabled in the configuration.</td>
+</tr>
+<tr>
+<td><code>table.pack</code>/<code>table.unpack</code></td>
+<td>✔</td>
+<td></td>
+</tr>
+<tr>
+<td><code>math.log</code> base argument</td>
+<td>✔</td>
+<td></td>
+</tr>
+<tr>
+<td>Removed <code>math.log10</code></td>
+<td>🔶</td>
+<td>Only if <code>disable_lua51_features</code> is enabled in the configuration.</td>
+</tr>
+<tr>
+<td><code>*L</code> mode to <code>file:read</code></td>
+<td>✔</td>
+<td></td>
+</tr>
+<tr>
+<td><code>os.execute</code> exit type + return value</td>
+<td>❌</td>
+<td><code>os.execute</code> does not exist in CC:T.</td>
+</tr>
+<tr>
+<td><code>os.exit</code> close argument</td>
+<td>❌</td>
+<td><code>os.exit</code> does not exist in CC:T.</td>
+</tr>
+<tr>
+<td><code>istailcall</code> field in <code>debug.getinfo</code></td>
+<td>❌</td>
+<td></td>
+</tr>
+<tr>
+<td><code>nparams</code> field in <code>debug.getinfo</code></td>
+<td>✔</td>
+<td></td>
+</tr>
+<tr>
+<td><code>isvararg</code> field in <code>debug.getinfo</code></td>
+<td>✔</td>
+<td></td>
+</tr>
+<tr>
+<td><code>debug.getlocal</code> negative indices for varargs</td>
+<td>❌</td>
+<td></td>
+</tr>
+<tr>
+<td><code>debug.getuservalue</code>/<code>debug.setuservalue</code></td>
+<td>❌</td>
+<td>Userdata are rarely used in CC:T, so this is not necessary.</td>
+</tr>
+<tr>
+<td><code>debug.upvalueid</code></td>
+<td>✔</td>
+<td></td>
+</tr>
+<tr>
+<td><code>debug.upvaluejoin</code></td>
+<td>✔</td>
+<td></td>
+</tr>
+<tr>
+<td>Tail call hooks</td>
+<td>❌</td>
+<td></td>
+</tr>
+<tr>
+<td><code>=</code> prefix for chunks</td>
+<td>✔</td>
+<td></td>
+</tr>
+<tr>
+<td>Yield across C boundary</td>
+<td>✔</td>
+<td></td>
+</tr>
+<tr>
+<td>Removal of ambiguity error</td>
+<td>❌</td>
+<td></td>
+</tr>
+<tr>
+<td>Identifiers may no longer use locale-dependent letters</td>
+<td>✔</td>
+<td></td>
+</tr>
+<tr>
+<td>Ephemeron tables</td>
+<td>❌</td>
+<td></td>
+</tr>
+<tr>
+<td>Identical functions may be reused</td>
+<td>❌</td>
+<td>Removed in Lua 5.4</td>
+</tr>
+<tr>
+<td>Generational garbage collector</td>
+<td>❌</td>
+<td>Cobalt uses the built-in Java garbage collector.</td>
+</tr>
+</table></div><h2>Lua 5.3</h2>
+<div role="region"><table>
+<tr>
+<th>Feature</th>
+<th>Supported?</th>
+<th>Notes</th>
+</tr>
+<tr>
+<td>Integer subtype</td>
+<td>❌</td>
+<td></td>
+</tr>
+<tr>
+<td>Bitwise operators/floor division</td>
+<td>❌</td>
+<td></td>
+</tr>
+<tr>
+<td><code>\u{XXX}</code> escape sequence</td>
+<td>✔</td>
+<td></td>
+</tr>
+<tr>
+<td><code>utf8</code> library</td>
+<td>✔</td>
+<td></td>
+</tr>
+<tr>
+<td>removed <code>__ipairs</code> metamethod</td>
+<td>✔</td>
+<td></td>
+</tr>
+<tr>
+<td><code>coroutine.isyieldable</code></td>
+<td>✔</td>
+<td></td>
+</tr>
+<tr>
+<td><code>string.dump</code> strip argument</td>
+<td>✔</td>
+<td></td>
+</tr>
+<tr>
+<td><code>string.pack</code>/<code>string.unpack</code>/<code>string.packsize</code></td>
+<td>✔</td>
+<td></td>
+</tr>
+<tr>
+<td><code>table.move</code></td>
+<td>✔</td>
+<td></td>
+</tr>
+<tr>
+<td><code>math.atan2</code> -&gt; <code>math.atan</code></td>
+<td>❌</td>
+<td></td>
+</tr>
+<tr>
+<td>Removed <code>math.frexp</code>, <code>math.ldexp</code>, <code>math.pow</code>, <code>math.cosh</code>, <code>math.sinh</code>, <code>math.tanh</code></td>
+<td>❌</td>
+<td></td>
+</tr>
+<tr>
+<td><code>math.maxinteger</code>/<code>math.mininteger</code></td>
+<td>❌</td>
+<td></td>
+</tr>
+<tr>
+<td><code>math.tointeger</code></td>
+<td>❌</td>
+<td></td>
+</tr>
+<tr>
+<td><code>math.type</code></td>
+<td>❌</td>
+<td></td>
+</tr>
+<tr>
+<td><code>math.ult</code></td>
+<td>❌</td>
+<td></td>
+</tr>
+<tr>
+<td>Removed <code>bit32</code> library</td>
+<td>❌</td>
+<td></td>
+</tr>
+<tr>
+<td>Remove <code>*</code> from <code>file:read</code> modes</td>
+<td>✔</td>
+<td></td>
+</tr>
+<tr>
+<td>Metamethods respected in <code>table.*</code>, <code>ipairs</code></td>
+<td>✔</td>
+<td></td>
+</tr>
+</table></div><h2>Lua 5.0</h2>
+<div role="region"><table>
+<tr>
+<th>Feature</th>
+<th>Supported?</th>
+<th>Notes</th>
+</tr>
+<tr>
+<td><code>arg</code> table</td>
+<td>🔶</td>
+<td>Only set in the shell - not used in functions.</td>
+</tr>
+<tr>
+<td><code>string.gfind</code></td>
+<td>✔</td>
+<td>Equal to <code>string.gmatch</code>.</td>
+</tr>
+<tr>
+<td><code>table.getn</code></td>
+<td>✔</td>
+<td>Equal to <code>#tbl</code>.</td>
+</tr>
+<tr>
+<td><code>table.setn</code></td>
+<td>❌</td>
+<td></td>
+</tr>
+<tr>
+<td><code>math.mod</code></td>
+<td>✔</td>
+<td>Equal to <code>math.fmod</code>.</td>
+</tr>
+<tr>
+<td><code>table.foreach</code>/<code>table.foreachi</code></td>
+<td>✔</td>
+<td></td>
+</tr>
+<tr>
+<td><code>gcinfo</code></td>
+<td>❌</td>
+<td>Cobalt uses the built-in Java garbage collector.</td>
+</tr>
+</table></div></section><footer>Last updated on 2023-10-11</footer></div><div id="search-overlay"></div><script src="../main.js?v=f449c6d1" type="text/javascript" defer=""></script></body></html>
