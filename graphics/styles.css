@@ -7,6 +7,7 @@ body {
     margin: 0;
     font-family: "FireCodeSource",Tahoma,Geneva,Verdana,sans-serif;
     background-color: #1E1E1E;
+    background-image: url(/meow_transparent.png);
     color: #E0E0E0;
     display: flex;
     flex-direction: column;
@@ -38,8 +39,13 @@ main {
 }
 
 .resources {
+    background-color: #000a;
     max-width: 1000px;
     margin: 0 auto;
+    margin-top: 0px;
+    border-width: 10px;
+    border-style: solid;
+    border-color: #0000;
 }
 
 h2 {
@@ -48,6 +54,7 @@ h2 {
     border-bottom: 2px solid #333;
     padding-bottom: 10px;
     margin-bottom: 20px;
+    margin-top: 0px;
 }
 
 ul {
@@ -135,6 +142,7 @@ footer a {
     bottom: 3px;
     right: 3px;
     text-align: center;
+    background-color: #000;
 }
 
 .meow p {

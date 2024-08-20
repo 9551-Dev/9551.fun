@@ -1,0 +1,38 @@
+name: pages
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: do i really have to name this
+        run: mkdir out
+
+      - name: make the graphics dir
+        run: mkdir out/graphics
+      - name: build graphics resources
+        run: ./graphics/ssg -i graphics/resources.json -o out/graphics/index.html
+      - name: copy the css
+        run: cp graphics/styles.css out/graphics/styles.css
+
+      - name: yeah
+        run: cp -r static/* out/
+
+      - name: you can tell what this does
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./out
+          force_orphan: true
+          commit_message:
