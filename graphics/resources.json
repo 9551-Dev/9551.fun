@@ -1,0 +1,306 @@
+{
+  "title": "3D Graphics Programming Resources",
+  "description": "List of resources for 3D graphics programming and related content",
+  "categories": [
+    {
+      "name": "General resources",
+      "links": [
+        {
+          "name": "3D rendering fundamentals (PlanetChilli) (BEST)",
+          "url": "https://www.youtube.com/watch?v=uehGqieEbus&list=PLqCJpWy5Fohe8ucwhksiv9hTF5sfid8lA",
+          "bold": true
+        },
+        {
+          "name": "Scratchapixel V4",
+          "url": "https://www.scratchapixel.com/",
+          "bold": false
+        },
+        {
+          "name": "Frustum culling",
+          "url": "https://www.youtube.com/watch?v=CHYxjpYep_M",
+          "bold": false
+        },
+        {
+          "name": "GPU vertice and LOD handling",
+          "url": "https://youtu.be/hf27qsQPRLQ?si=tZcCnEBhAkpKf6Do",
+          "bold": false
+        },
+        {
+          "name": "Lerp (linear and) general interpolation",
+          "url": "https://www.youtube.com/watch?v=YJB1QnEmlTs",
+          "bold": false
+        },
+        {
+          "name": "How different games render their scenes",
+          "url": "https://www.youtube.com/watch?v=Oct4Oi-KfVQ",
+          "bold": false
+        },
+        {
+          "name": "Splines and spline interpolation (curves, bezier)",
+          "url": "https://www.youtube.com/watch?v=jvPPXbo87ds",
+          "bold": false
+        },
+        {
+          "name": "Quaternions explained",
+          "url": "https://youtube.com/playlist?list=PLW3Zl3wyJwWNWsJIPZrmY19urkYHXOH3N",
+          "bold": false
+        },
+        {
+          "name": "Proper usage of deltaTime",
+          "url": "https://www.youtube.com/watch?v=yGhfUcPjXuE",
+          "bold": false
+        },
+        {
+          "name": "FlipCode HSSR code reference",
+          "url": "https://www.flipcode.com/archives/High_Speed_Software_Rendering.shtml",
+          "bold": false
+        },
+        {
+          "name": "Soft bodies, normal maps and ambient occlusion maps explained",
+          "url": "https://www.youtube.com/watch?v=T75SucBcfMo",
+          "bold": false
+        },
+        {
+          "name": "Catlikecoding unity guides/tutorials",
+          "url": "https://catlikecoding.com/unity/tutorials/",
+          "bold": false
+        },
+        {
+          "name": "3 month raytracer devlog",
+          "url": "https://www.youtube.com/watch?v=OAF4RCS_pPc&list=PLtAC3_CHmRH9Dgs_NL7vfmoIQveHXLu4x",
+          "bold": false
+        },
+        {
+          "name": "Vulkan for beginners",
+          "url": "https://www.youtube.com/watch?v=Y9U9IE0gVHA&list=PL8327DO66nu9qYVKLDmdLW_84-yE4auCR",
+          "bold": false
+        },
+        {
+          "name": "Teardown (game) rendering breakdown",
+          "url": "https://juandiegomontoya.github.io/teardown_breakdown.html",
+          "bold": false
+        },
+        {
+          "name": "Teardown (game) rendering breakdown 2",
+          "url": "https://acko.net/blog/teardown-frame-teardown/",
+          "bold": false
+        },
+        {
+          "name": "GPU graphics programming for games",
+          "url": "https://youtube.com/playlist?list=PLOunECWxELQQwayE8e3WjKPJsTGKknJ8w&si=3Rtn7E6XzEzxWBk4",
+          "bold": false
+        },
+        {
+          "name": "\"Pixel art\" camera",
+          "url": "https://www.youtube.com/watch?v=LQfAGAj9oNQ",
+          "bold": false
+        },
+        {
+          "name": "Color spaces visualized in minecraft",
+          "url": "https://www.youtube.com/watch?v=nJlZT5AE9zY",
+          "bold": false
+        }
+      ]
+    },
+    {
+      "name": "Rendering methods",
+      "links": [
+        {
+          "name": "Coding Adventure: Ray Tracing",
+          "url": "https://www.youtube.com/watch?v=Qz0KTGYJtUk",
+          "bold": false
+        },
+        {
+          "name": "Coding Adventure: Optimizing a Ray Tracer w/ BVH",
+          "url": "https://www.youtube.com/watch?v=C1H4zIiCOaI",
+          "bold": false
+        },
+        {
+          "name": "Coding Adventure: Ray Marching",
+          "url": "https://www.youtube.com/watch?v=Cp5WWtMoeKg",
+          "bold": false
+        },
+        {
+          "name": "Voxel rendering with parallax raymarching",
+          "url": "https://www.youtube.com/watch?v=h81I8hR56vQ",
+          "bold": false
+        }
+      ]
+    },
+    {
+      "name": "Linear algebra",
+      "links": [
+        {
+          "name": "Gamedev Math: Point in a triangle",
+          "url": "https://www.youtube.com/watch?v=HYAgJN3x4GA",
+          "bold": false
+        },
+        {
+          "name": "3B1B essence of linear algebra",
+          "url": "https://www.youtube.com/watch?v=kjBOesZCoqc&list=PL0-GT3co4r2y2YErbmuJw2L5tW4Ew2O5B",
+          "bold": false
+        },
+        {
+          "name": "Matrix math in 3D graphics (intuitive understanding)",
+          "url": "https://www.youtube.com/watch?v=wiYTxjJjfxs",
+          "bold": false
+        },
+        {
+          "name": "Multiplying matrices (site)",
+          "url": "http://matrixmultiplication.xyz/",
+          "bold": false
+        },
+        {
+          "name": "Multiplying matrices (video)",
+          "url": "https://www.youtube.com/watch?v=2spTnAiQg4M",
+          "bold": false
+        }
+      ]
+    },
+    {
+      "name": "Rasterization",
+      "links": [
+        {
+          "name": "General triangle rasterization explanation (without translucency problems)",
+          "url": "https://youtu.be/cQY3WTKRI7I?t=1907",
+          "bold": true
+        },
+        {
+          "name": "Affine texture mapping with Barycentric coordinates",
+          "url": "https://computergraphics.stackexchange.com/questions/1866/how-to-map-square-texture-to-triangle",
+          "bold": true
+        },
+        {
+          "name": "Good general rendering overview (deferred rendering explained)",
+          "url": "https://www.youtube.com/watch?v=By7qcgaqGI4",
+          "bold": true
+        },
+        {
+          "name": "Sub-pixel raster accuracy (WWH1)",
+          "url": "https://mikro.naprvyraz.sk/docs/Coding/2/WWH1.TXT",
+          "bold": false
+        },
+        {
+          "name": "Sub-texel raster accuracy (WWH2)",
+          "url": "https://mikro.naprvyraz.sk/docs/Coding/2/WWH2.TXT",
+          "bold": false
+        },
+        {
+          "name": "Triangle texture mipmapping",
+          "url": "https://www.youtube.com/watch?v=8OtOFN17jxM",
+          "bold": false
+        },
+        {
+          "name": "OpenGL color blending",
+          "url": "https://learnopengl.com/Advanced-OpenGL/Blending",
+          "bold": false
+        },
+        {
+          "name": "Coding Adventure: Compute Shaders",
+          "url": "https://www.youtube.com/watch?v=9RHGLZLUuwc",
+          "bold": false
+        }
+      ]
+    },
+    {
+      "name": "General math",
+      "links": [
+        {
+          "name": "Rotating vectors",
+          "url": "https://www.youtube.com/watch?v=7j5yW5QDC2U",
+          "bold": false
+        },
+        {
+          "name": "Vectors and dot products",
+          "url": "https://www.youtube.com/watch?v=fjOdtSu4Lm4",
+          "bold": false
+        },
+        {
+          "name": "Trigonometry functions (sin,cos,tan,...) on a unit circle",
+          "url": "https://www.youtube.com/watch?v=Dsf6ADwJ66E",
+          "bold": false
+        }
+      ]
+    },
+    {
+      "name": "Procedual generation",
+      "links": [
+        {
+          "name": "Perlin noise explanation",
+          "url": "https://www.youtube.com/watch?v=MJ3bvCkHJtE",
+          "bold": false
+        },
+        {
+          "name": "Multi-octave perlin noise explanation",
+          "url": "https://catlikecoding.com/unity/tutorials/pseudorandom-noise/perlin-noise/",
+          "bold": false
+        },
+        {
+          "name": "Basic voxel terrain generation and minecraft terrain generation",
+          "url": "https://www.youtube.com/watch?v=CSa5O6knuwI",
+          "bold": false
+        },
+        {
+          "name": "Minecraft terrain generation explained in-depth",
+          "url": "https://www.youtube.com/watch?v=YyVAaJqYAfE",
+          "bold": false
+        }
+      ]
+    },
+    {
+      "name": "3D model manipulation",
+      "links": [
+        {
+          "name": "Meshing in voxel renderers",
+          "url": "https://0fps.net/2012/06/30/meshing-in-a-minecraft-game/",
+          "bold": false
+        },
+        {
+          "name": "Optimizing terrain in games",
+          "url": "https://www.youtube.com/watch?v=5zlfJW2VGLM",
+          "bold": false
+        },
+        {
+          "name": "Greedy meshing in games",
+          "url": "https://www.youtube.com/watch?v=4xs66m1Of4A",
+          "bold": false
+        },
+        {
+          "name": "LOD and polygonal simplification",
+          "url": "http://mkrus.free.fr/CG/LODS/xrds/",
+          "bold": false
+        },
+        {
+          "name": "Triangle mesh normals",
+          "url": "https://youtu.be/nS3qwFOPieg",
+          "bold": false
+        }
+      ]
+    },
+    {
+      "name": "Algorithms",
+      "links": [
+        {
+          "name": "Realistic lighting with radiance cascades",
+          "url": "https://www.youtube.com/watch?v=3so7xdZHKxw",
+          "bold": false
+        },
+        {
+          "name": "Fast matrix multiplication algorithm",
+          "url": "https://www.youtube.com/watch?v=sZxjuT1kUd0",
+          "bold": false
+        },
+        {
+          "name": "GJK algorithm",
+          "url": "https://www.youtube.com/watch?v=MDusDn8oTSE",
+          "bold": false
+        },
+        {
+          "name": "EPA algorithm",
+          "url": "https://www.youtube.com/watch?v=0XQ2FSz3EK8",
+          "bold": false
+        }
+      ]
+    }
+  ]
+}
