@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+</head> 
+<body>
+    <h2>this is your iq idiot</h2>
+    <p id="myPara">PLACEHOLDER</p>
+    <button type="button" onclick="changeText()">CALCULATE IQ</button>
+    <script>
+        function changeText(){
+            var element = document.getElementById("myPara");
+            element.innerHTML = (getRandomInt(20)+90).toString();
+        }
+    </script>
+</body>
+</html>
