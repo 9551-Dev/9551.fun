@@ -1,0 +1,4 @@
+--- list of all the presets in GuiH
+-- @module presets
+-- @see GuiH.presets.rect
+-- @see GuiH.presets.tex
