@@ -1,46 +1,295 @@
 <!DOCTYPE html>
-<title>9551's website</title>
-    <meta content="9551's profesional web" property="og:title" />
-    <meta content="this is 9551's very profesional website made for very serious stuff like epic gamer button and free Bobux also this is docs but no one cares about that" property="og:description" />
-    <meta content="http://9551.madefor.cc/" property="og:url" />
-    <meta content="https://cdn.discordapp.com/avatars/508577166405926913/2f070075672e522a8e6a31f81ea766d4.webp?size=128" property="og:image" />
-    <meta content="#8ff91f" data-react-helmet="true" name="theme-color" />
-<style>
-    .btn {
-        border: none;
-        background-color: rgb(34, 34, 34);
-        padding: 14px 28px;
-        font-size: 16px;
-        cursor: pointer;
-        display: inline-block;
-        color: white;
-    }
-    .btn:hover {
-        background: rgb(46, 42, 42);
-    }
-</style>
 <html lang="en">
-
-</html>
-
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="./main.js" defer></script>
+    <link rel="stylesheet" href="./style.css">
+    <title>devvie.cc</title>
 </head>
+<body>
+    <div class="top-nav">
+        <div class="logo"><a href="./">devvie.cc</a></div>
+        <nav>
+            <button class="category-btn active" data-cat="main">main</button>
+            <button class="category-btn" data-cat="servers">servers</button>
+            <button class="category-btn" data-cat="resources">resources</button>
+            <button class="category-btn" data-cat="projects">projects</button>
+        </nav>
+        <a href="./contact/" class="nav-contact">contact</a>
+    </div>
 
-<body style="background-color: black">
-    <h1></h1>
-    <h1 style = "color:rgb(212, 212, 212);text-shadow: 10px">this is 9551Dev's website used for some amazing stuff</h1>
-    <h1 style="color:white">usefull stuf (modpack/Lua)</h1>
-    <button class="btn" onclick="location.href='/docs'">9551's Docs</button>
-    <button class="btn" onclick="location.href='/narix'">NarixTECH web</button>
-    <button class="btn" onclick="location.href='http://sj.devvie.cc:8081'">jidelna</button>
-    <p style="font-size: 10cm"></p>
-    <h1 style="color:white">memez</h1>
-    <button class="btn" onclick="location.href='/button'">epic gamer button</button>
-    <button class="btn" onclick="location.href='/bobux'">free Vbux'/'Bobux</button>
-    <button class="btn" onclick="location.href='/vibe'">just vibe</button>
+    <div class="container">
+        <section id="main" class="category-section active">
+            <h2>main</h2>
+            <div class="subcategory-group">
+                <div class="subcategory-header">Actually useful</div>
+                <div class="grid">
+                     <div class="card">
+                        <div class="title-with-image">
+                            <h3 style="font-weight: bold; color: rgb(148, 190, 253)">Electronics gallery</h3>
+                        </div>
+                        <div class="card-description">Photos of projects</div>
+                        <div class="card-links">
+                            <a href="https://zap.devvie.cc" target="_blank" rel="noopener">zap.devvie.cc</a>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="title-with-image">
+                            <h3>File converter</h3>
+                        </div>
+                        <div class="card-description">No upload, mildly cursed file format converter</div>
+                        <div class="card-links">
+                            <a href="https://cnv.devvie.cc" target="_blank" rel="noopener">cnv.devvie.cc</a>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="title-with-image">
+                            <h3>Copyparty 🌲</h3>
+                        </div>
+                        <div class="card-description">Copyparty instance for my file-sharing needs </div>
+                        <div class="card-links">
+                            <a href="https://cp.devvie.cc" target="_blank" rel="noopener">cp.devvie.cc</a>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="title-with-image">
+                            <h3>Slink</h3>
+                        </div>
+                        <div class="card-description">Image sharing/view service</div>
+                        <div class="card-links">
+                            <a href="https://im.devvie.cc" target="_blank" rel="noopener">im.devvie.cc</a>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="title-with-image">
+                            <h3>Git <span style="color: rgb(54, 54, 54)">(OneDev)</span></h3>
+                        </div>
+                        <div class="card-description">Selfhosted git repos</div>
+                        <div class="card-links">
+                            <a href="https://git.devvie.cc" target="_blank" rel="noopener">git.devvie.cc</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="subcategory-group">
+                <div class="subcategory-header">Not so useful</div>
+                <div class="grid">
+                    <div class="card">
+                        <div class="title-with-image">
+                            <h3>Minecraft dashboard</h3>
+                        </div>
+                        <div class="card-description">Control panel for MC servers</div>
+                        <div class="card-links">
+                            <a href="https://mc.devvie.cc" target="_blank" rel="noopener">mc.devvie.cc</a>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="title-with-image">
+                            <h3>Jellyfin (media)</h3>
+                        </div>
+                        <div class="card-description">My private media server</div>
+                        <div class="card-links">
+                            <a href="https://fih.devvie.cc" target="_blank" rel="noopener">fih.devvie.cc</a>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="title-with-image">
+                            <h3>VPN relay</h3>
+                        </div>
+                        <div class="card-description">Main tunnel/router</div>
+                        <div class="card-links">
+                            <a href="https://relay.devvie.cc" target="_blank" rel="noopener">relay.devvie.cc</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="subcategory-header">CCAA org</div>
+                <div class="card-description">Communist Christians Against Alzheimers</div>
+                <div class="card-links">
+                    <a href="https://ccaa.info" target="_blank" rel="noopener">ccaa.info</a>
+                </div>
+            </div>
+            <div class="legacy-block">
+                <h3>legacy stuff</h3>
+                <div class="legacy-lines">
+                    <a href="./button/">epic gamer button</a>
+                    <a href="./bobux/">free vbux / bobux</a>
+                    <a href="./vibe/">just vibe</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="servers" class="category-section">
+            <h2>servers</h2>
+            <div class="subcategory-group">
+                <div class="subcategory-header">minecraft</div>
+                <div class="grid">
+                    <div class="card">
+                        <div class="title-with-image">
+                            <h3>elenith</h3>
+                        </div>
+                        <div class="card-footer">
+                            <div class="copyable-block" data-copy="elenith.devvie.cc">elenith.devvie.cc</div>
+                            <a href="https://mega.nz/file/IYFykKbD#9Wtxptp2jQq6KBaoNeObY0FsIfYWqx34LsCD0e23tDo" class="download-link">Pack DL (mega.nz)</a>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="title-with-image">
+                            <h3>GTNH</h3>
+                            <img src="./logos/gtnh.png" class="card-image-inline"></img>
+                        </div>
+                        <div class="card-footer">
+                            <div class="copyable-block" data-copy="gtnh.devvie.cc">gtnh.devvie.cc</div>
+                            <a href="https://cp.devvie.cc/shr/rdpp9zwvsev9/GTNH_2.8.4_9551.zip" class="download-link">Pack DL (cp.devvie.cc)</a>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="title-with-image">
+                            <h3>Safra</h3>
+                        </div>
+                        <div class="copyable-block" data-copy="heil.devvie.cc">heil.devvie.cc</div>
+                    </div>
+                </div>
+            </div>
+            <div class="subcategory-group">
+                <div class="subcategory-header">factorio</div>
+                <div class="grid">
+                    <div class="card">
+                        <h3>testing server</h3>
+                        <div class="copyable-block" data-copy="factorio.devvie.cc">factorio.devvie.cc</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="resources" class="category-section">
+            <h2>resources</h2>
+            <div class="subcategory-group">
+                <div class="subcategory-header">documentation</div>
+                <div class="grid">
+                    <div class="card">
+                        <div class="title-with-image">
+                            <h3>GuiH docs</h3>
+                        </div>
+                        <div class="card-description">ComputerCraft GuiH UI api documentation</div>
+                        <div class="card-links">
+                            <a href="https://guih.madefor.cc" target="_blank" rel="noopener">guih.madefor.cc</a>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="title-with-image">
+                            <h3>C3D docs</h3>
+                        </div>
+                        <div class="card-description">C3D Computercraft 3D engine documentation</div>
+                        <div class="card-links">
+                            <a href="https://c3d.madefor.cc" target="_blank" rel="noopener">c3d.madefor.cc</a>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <h3>Graphics resources</h3>
+                        <div class="card-description">Bunch of resources on computer 2D/3D graphics and gamedev</div>
+                        <div class="card-links">
+                            <a href="./graphics/">./graphics/</a>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <h3>Lua metamethods</h3>
+                        <div class="card-description">List of Lua metamethod names</div>
+                        <div class="card-links">
+                            <a href="./metamethods/">./metamethods/</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="subcategory-group">
+                <div class="subcategory-header">notes & misc</div>
+                <div class="grid">
+                    <div class="card">
+                        <div class="title-with-image">
+                            <h3>Old school notes</h3>
+                        </div>
+                        <div class="card-description">My old school notes</div>
+                        <div class="card-links">
+                            <a href="https://zapis.devvie.cc" target="_blank" rel="noopener">zapis.devvie.cc</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="projects" class="category-section">
+            <h2>projects</h2>
+            <div class="subcategory-group">
+                <div class="subcategory-header">Lua libraries</div>
+                <div class="grid">
+                    <div class="card">
+                        <h3>pixelbox_lite</h3>
+                        <div class="card-description">Fastest 2D drawing library for ComputerCraft</div>
+                        <div class="card-links">
+                            <a href="https://github.com/9551-Dev/pixelbox_lite" target="_blank" rel="noopener">github</a>
+                        </div>
+                    </div>
+                    <div class="card" >
+                        <div class="title-with-image">
+                            <h3>C3D</h3>
+                        </div>
+                        <div class="card-description">3D engine in Lua for computercraft</div>
+                        <div class="card-links">
+                            <a href="https://github.com/9551-Dev/C3D" target="_blank" rel="noopener">github</a>
+                            <a href="http://c3d.madefor.cc" target="_blank" rel="noopener">docs</a>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="title-with-image">
+                            <h3>pngLua</h3>
+                        </div>
+                        <div class="card-description">Lua PNG decoder made for ComputerCraft</div>
+                        <div class="card-links">
+                            <a href="https://github.com/9551-Dev/pngLua" target="_blank" rel="noopener">github</a>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="title-with-image">
+                            <h3>luaqoi</h3>
+                        </div>
+                        <div class="card-description">QOI image decoder/encoder for ComputerCraft written in Lua</div>
+                        <div class="card-links">
+                            <a href="https://github.com/9551-Dev/luaqoi" target="_blank" rel="noopener">github</a>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <h3>pixelbox_modules</h3>
+                        <div class="card-description">Extra modules for pixelbox_lite</div>
+                        <div class="card-links">
+                            <a href="https://github.com/9551-Dev/pixelbox_modules" target="_blank" rel="noopener">github</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="subcategory-group">
+                <div class="subcategory-header">electronics</div>
+                <div class="grid">
+                    <div class="card">
+                        <div class="title-with-image">
+                            <h3>OpenQCW</h3>
+                        </div>
+                        <div class="card-description">QCW Tesla coil hardware/firmware</div>
+                        <div class="card-links">
+                            <a href="https://github.com/9551-Dev/OpenQCW" target="_blank" rel="noopener">github</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <div class="bottom-left"><a href="./404">404</a></div>
+    <div class="bottom-right">
+        <a href="https://github.com/9551-Dev" target="_blank" rel="noopener">
+            <img src="https://github.com/9551-Dev.png" alt="GitHub profile" class="github-avatar">
+        </a>
+    </div>
 </body>
-
 </html>
