@@ -37,7 +37,7 @@
     const copy_blocks = document.querySelectorAll(".copyable-block");
     copy_blocks.forEach(block => {
         const original_text = block.innerText.trim();
-        block.dataset.orioginal_text = original_text;
+        block.dataset.original_text = original_text;
 
         let timeout_id = null;
 
@@ -64,7 +64,7 @@
 
             timeout_id = setTimeout(() => {
                 block.classList.remove("copy-flash");
-                block.innerText = block.dataset.originalText;
+                block.innerText = block.dataset.original_text;
                 timeout_id = null;
             }, 800);
         });
