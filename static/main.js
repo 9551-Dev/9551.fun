@@ -2,59 +2,65 @@
     "use strict";
     var jumpable_selector = ".jumpable";
 
-    const btns       = document.querySelectorAll(".category-btn");
-    const sections   = document.querySelectorAll(".category-section");
+    var btns = document.querySelectorAll(".category-btn");
+    var sections = document.querySelectorAll(".category-section");
     var descriptions = document.querySelectorAll(".card-description");
 
     function activate_category(cat) {
-        const btn = document.querySelector(`.category-btn[data-cat="${cat}"]`);
+        var btn = document.querySelector(".category-btn[data-cat=\"" + cat + "\"]");
         if (!btn) return false;
-        btns.forEach(b => b.classList.remove("active"));
+        btns.forEach(function(b) { b.classList.remove("active"); });
         btn.classList.add("active");
-        sections.forEach(s => {
+        sections.forEach(function(s) {
             s.classList.toggle("active", s.id === cat);
         });
+        var active_section = document.getElementById(cat);
+        if (active_section) {
+            active_section.querySelectorAll(".card-description").forEach(function(desc) {
+                truncate_description(desc);
+            });
+        }
         return true;
     }
 
-    function scrollToElement(id) {
-        const el = document.getElementById(id);
+    function scroll_to_element(id) {
+        var el = document.getElementById(id);
         if (!el) return false;
         el.scrollIntoView({ behavior: "smooth", block: "start" });
         el.style.transition = "background 0.2s";
         el.style.background = "rgba(80, 140, 210, 0.15)";
-        setTimeout(() => { el.style.background = ""; }, 500);
+        setTimeout(function() { el.style.background = ""; }, 500);
         return true;
     }
 
-    window.addEventListener("hashchange", () => {
-        let hash = window.location.hash.slice(1);
+    window.addEventListener("hashchange", function() {
+        var hash = window.location.hash.slice(1);
         if (!hash) {
             activate_category("main");
             return;
         }
         if (hash.includes("--")) {
-            let parts = hash.split("--");
-            let cat = parts[0];
-            let subId = parts.slice(1).join("--");
+            var parts = hash.split("--");
+            var cat = parts[0];
+            var sub_id = parts.slice(1).join("--");
             if (activate_category(cat)) {
-                setTimeout(() => scrollToElement(subId), 50);
+                setTimeout(function() { scroll_to_element(sub_id); }, 50);
             }
             return;
         }
-        const categoryBtn = document.querySelector(`.category-btn[data-cat="${hash}"]`);
-        if (categoryBtn) {
+        var category_btn = document.querySelector(".category-btn[data-cat=\"" + hash + "\"]");
+        if (category_btn) {
             activate_category(hash);
             return;
         }
-        const target = document.getElementById(hash);
+        var target = document.getElementById(hash);
         if (target) {
-            const parentSection = target.closest(".category-section");
-            if (parentSection && parentSection.id && !document.querySelector(`.category-section.active#${parentSection.id}`)) {
-                activate_category(parentSection.id);
-                setTimeout(() => scrollToElement(hash), 50);
+            var parent_section = target.closest(".category-section");
+            if (parent_section && parent_section.id && !document.querySelector(".category-section.active#" + parent_section.id)) {
+                activate_category(parent_section.id);
+                setTimeout(function() { scroll_to_element(hash); }, 50);
             } else {
-                scrollToElement(hash);
+                scroll_to_element(hash);
             }
             return;
         }
@@ -62,32 +68,32 @@
     });
     window.dispatchEvent(new Event("hashchange"));
 
-    btns.forEach(btn => {
-        btn.addEventListener("click", () => {
+    btns.forEach(function(btn) {
+        btn.addEventListener("click", function() {
             window.location.hash = btn.dataset.cat;
         });
     });
 
-    const copy_blocks = document.querySelectorAll(".copyable-block");
-    copy_blocks.forEach(block => {
-        const original_text = block.innerText.trim();
+    var copy_blocks = document.querySelectorAll(".copyable-block");
+    copy_blocks.forEach(function(block) {
+        var original_text = block.innerText.trim();
         block.dataset.original_text = original_text;
-        let timeout_id = null;
-        block.addEventListener("click", (e) => {
+        var timeout_id = null;
+        block.addEventListener("click", function(e) {
             e.stopPropagation();
-            const textToCopy = block.dataset.copy || original_text;
+            var text_to_copy = block.dataset.copy || original_text;
             if (timeout_id) clearTimeout(timeout_id);
             block.classList.add("copy-flash");
             block.innerText = "copied!";
-            navigator.clipboard.writeText(textToCopy).catch(() => {
-                const textarea = document.createElement("textarea");
-                textarea.value = textToCopy;
+            navigator.clipboard.writeText(text_to_copy).catch(function() {
+                var textarea = document.createElement("textarea");
+                textarea.value = text_to_copy;
                 document.body.appendChild(textarea);
                 textarea.select();
-                try { document.execCommand("copy"); } catch (e) {}
+                try { document.execCommand("copy"); } catch(e) {}
                 document.body.removeChild(textarea);
             });
-            timeout_id = setTimeout(() => {
+            timeout_id = setTimeout(function() {
                 block.classList.remove("copy-flash");
                 block.innerText = block.dataset.original_text;
                 timeout_id = null;
@@ -95,25 +101,25 @@
         });
     });
 
-    descriptions.forEach(function(desc) {
-        var parent_card = desc.closest(".card");
+    function truncate_description(desc) {
+        if (desc.hasAttribute("data-truncated")) return;
         if (desc.hasAttribute("data-no-truncate") ||
             desc.classList.contains("no-readmore") ||
-            (parent_card && parent_card.classList.contains("no-readmore"))) {
+            (desc.closest(".card") && desc.closest(".card").classList.contains("no-readmore"))) {
             return;
         }
         var original_html = desc.innerHTML;
-        var test_div = document.createElement("div");
-        test_div.style.cssText = "position: absolute; visibility: hidden; width: " + desc.offsetWidth + "px; font-size: 0.95rem; line-height: 1.4; padding: 0.4rem 0.6rem;";
-        test_div.innerHTML = original_html;
-        document.body.appendChild(test_div);
-        var content_height = test_div.scrollHeight;
-        document.body.removeChild(test_div);
-        var max_height_em = 12;
+        var clone = desc.cloneNode(true);
+        var parent_width = desc.offsetWidth || (desc.parentElement ? desc.parentElement.offsetWidth : 300);
+        clone.style.cssText = "position: absolute; visibility: hidden; width: " + parent_width + "px; font-size: 0.95rem; line-height: 1.4; padding: 0.4rem 0.6rem; top: -9999px; left: -9999px;";
+        document.body.appendChild(clone);
+        var content_height = clone.scrollHeight;
+        document.body.removeChild(clone);
+        var max_height_em = 15;
         var max_height_px = parseFloat(getComputedStyle(document.documentElement).fontSize) * max_height_em;
-        var needs_truncation = content_height > max_height_px + 5;
-        if (!needs_truncation) return;
+        if (content_height <= max_height_px + 5) return;
         desc.innerHTML = "";
+        desc.setAttribute("data-truncated", "true");
         var preview_wrapper = document.createElement("div");
         preview_wrapper.className = "cd-preview";
         var content_div = document.createElement("div");
@@ -139,15 +145,21 @@
                 toggle_btn.textContent = "Show more";
             }
         });
-    });
+    }
+
+    function truncate_all_descriptions() {
+        document.querySelectorAll(".card-description").forEach(function(desc) {
+            truncate_description(desc);
+        });
+    }
 
     function get_jumpable_title(el) {
         if (el.dataset.title && el.dataset.title.trim()) return el.dataset.title.trim();
-        const titleChild = el.querySelector(".jumpable-title");
-        if (titleChild) return titleChild.innerText.trim();
-        let ownText = el.innerText.trim();
-        if (ownText.length > 80) ownText = ownText.substring(0, 80) + "…";
-        return ownText || "unnamed section";
+        var title_child = el.querySelector(".jumpable-title");
+        if (title_child) return title_child.innerText.trim();
+        var own_text = el.innerText.trim();
+        if (own_text.length > 80) own_text = own_text.substring(0, 80) + "…";
+        return own_text || "unnamed section";
     }
 
     function assign_jumpable_ids() {
@@ -167,57 +179,57 @@
         });
     }
 
-    function build_floating_nav() {
-        var active_section = document.querySelector(".category-section.active");
-        var nav_list = document.getElementById("floatingNavList");
-        if (!nav_list) return;
-        if (!active_section) {
-            nav_list.innerHTML = '<li style="padding: 0.4rem 0.8rem; color: #888;">— no sections —</li>';
-            return;
-        }
-        let targets = [];
-        active_section.querySelectorAll(".subcategory-group").forEach(group => {
-            let header = group.querySelector(".subcategory-header");
-            if (!header) return;
-            let title = header.innerText.trim();
-            if (!title || !group.id) return;
-            targets.push({ id: group.id, title: title });
-        });
-        active_section.querySelectorAll(jumpable_selector).forEach(el => {
-            let title = get_jumpable_title(el);
-            if (!title) return;
-            if (!el.id) {
-                let base = title.toLowerCase().replace(/[^a-z0-9]+/g, "-") || "tmp";
-                el.id = "auto-" + base + "-" + Date.now() + "-" + Math.random();
-            }
-            targets.push({ id: el.id, title: title });
-        });
-        if (targets.length === 0) {
-            nav_list.innerHTML = '<li style="padding: 0.4rem 0.8rem; color: #888;">↳ no jumpable items</li>';
-            return;
-        }
-        let items_html = "";
-        const categoryId = active_section.id;
-        targets.forEach(target => {
-            let combinedHash = `${categoryId}--${target.id}`;
-            items_html += `<li><a class="floating-nav-link" href="#${combinedHash}" data-nav-link="${target.id}">> ${escape_html(target.title)}</a></li>`;
-        });
-        nav_list.innerHTML = items_html;
-        document.querySelectorAll(".floating-nav-link").forEach(link => {
-            link.addEventListener("click", function(e) {
-                e.preventDefault();
-                const hash = this.getAttribute("href").slice(1);
-                if (hash) window.location.hash = hash;
-            });
-        });
-    }
-
     function escape_html(str) {
         return str.replace(/[&<>]/g, function(m) {
             if (m === "&") return "&amp;";
             if (m === "<") return "&lt;";
             if (m === ">") return "&gt;";
             return m;
+        });
+    }
+
+    function build_floating_nav() {
+        var active_section = document.querySelector(".category-section.active");
+        var nav_list = document.getElementById("floatingNavList");
+        if (!nav_list) return;
+        if (!active_section) {
+            nav_list.innerHTML = "<li style=\"padding: 0.4rem 0.8rem; color: #888;\">— no sections —</li>";
+            return;
+        }
+        var targets = [];
+        active_section.querySelectorAll(".subcategory-group").forEach(function(group) {
+            var header = group.querySelector(".subcategory-header");
+            if (!header) return;
+            var title = header.innerText.trim();
+            if (!title || !group.id) return;
+            targets.push({ id: group.id, title: title });
+        });
+        active_section.querySelectorAll(jumpable_selector).forEach(function(el) {
+            var title = get_jumpable_title(el);
+            if (!title) return;
+            if (!el.id) {
+                var base = title.toLowerCase().replace(/[^a-z0-9]+/g, "-") || "tmp";
+                el.id = "auto-" + base + "-" + Date.now() + "-" + Math.random();
+            }
+            targets.push({ id: el.id, title: title });
+        });
+        if (targets.length === 0) {
+            nav_list.innerHTML = "<li style=\"padding: 0.4rem 0.8rem; color: #888;\">↳ no jumpable items</li>";
+            return;
+        }
+        var items_html = "";
+        var category_id = active_section.id;
+        targets.forEach(function(target) {
+            var combined_hash = category_id + "--" + target.id;
+            items_html += "<li><a class=\"floating-nav-link\" href=\"#" + combined_hash + "\" data-nav-link=\"" + target.id + "\">> " + escape_html(target.title) + "</a></li>";
+        });
+        nav_list.innerHTML = items_html;
+        document.querySelectorAll(".floating-nav-link").forEach(function(link) {
+            link.addEventListener("click", function(e) {
+                e.preventDefault();
+                var hash = this.getAttribute("href").slice(1);
+                if (hash) window.location.hash = hash;
+            });
         });
     }
 
@@ -251,6 +263,8 @@
         watch_category_changes();
         hook_category_buttons();
     }
+
+    truncate_all_descriptions();
 
     if (document.readyState === "loading") {
         document.addEventListener("DOMContentLoaded", init_floating_nav);
