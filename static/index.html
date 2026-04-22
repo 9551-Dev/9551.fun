@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
     <script src="./main.js" defer></script>
     <link rel="stylesheet" href="./style.css">
     <title>devvie.cc</title>
@@ -12,11 +13,18 @@
         <div class="logo"><a href="./">devvie.cc</a></div>
         <nav>
             <button class="category-btn active" data-cat="main">main</button>
-            <button class="category-btn" data-cat="servers">servers</button>
             <button class="category-btn" data-cat="resources">resources</button>
             <button class="category-btn" data-cat="projects">projects</button>
+            <button class="category-btn" data-cat="servers">servers</button>
         </nav>
         <a href="./contact/" class="nav-contact">contact</a>
+    </div>
+
+    <div class="floating-nav" id="floatingNav">
+        <div class="floating-nav-title">on this page</div>
+        <ul class="floating-nav-list" id="floatingNavList">
+            <li style="padding: 0.4rem 0.8rem; color: #888;">loading...</li>
+        </ul>
     </div>
 
     <div class="container">
@@ -30,21 +38,53 @@
                         </div>
                         <div class="whoami-text">
                             <h3>9551 (9551Dev/devvie)</h3>
-                            <p><strong>Programmer, high voltage electronics hobbyist, photographer, nerd and insane procrastinator.<br></strong></p>
+                            <p><strong>
+                                    - Programmer (3D/2D graphics, libraries, frameworks, ComputerCraft)
+                                <br>- Electronics Hobbyist (High voltage, microcontrollers, lasers, lighting, RF)
+                                <br>- Amateur photographer
+                                <br>- Chemistry/pyrotechnics noobie
+                                <br>- Learning networking/selfhosting basics (primarily routed over wireguard)
+                                <br>- Nerd and insane procrastinator.
+                                <br>- Silly things :3
+                            </strong></p>
                             <div class="card-description">
                                 I write Lua libraries for ComputerCraft (for example <strong>C3D</strong>, <strong>pixelbox_lite</strong>, <strong>pngLua</strong>, <strong>luaqoi</strong>)
-                                <br><br>I also experiment with lasers, tesla coils, pyrotechnics, chemistry
+                                <br><br>I have also written my own Lua parser/language preprocessor, data parsers for all sorts of formats
+                                <br><br>Ive done a thing or two with procedual generation mostly in terms of textures and terrain for a voxel engine environment
+                                <br><br>Also obviously like any programmer i will write tools to solve my own problems, for example my discord media downloader archivation tool
+                                <br><br>Ive written basic minecraft/factorio mods before, for minecraft mostly patches/bugfix mixins and for factorio most notably trupen-chops and HSV lamps
+                                <br><br>As much as i hate it.. i can do very basic web development, ive made a python script for generation of image galleries with an extension of markdown for text
+                                <br><br>Obviously, lots of random and silly stuff was also written by me over the years, its the best kind of programs :> (when people tell you that you should lose your coding license)
+                                <br><br>While my focus is primarily on graphics and software only programming i also have experience with embedded programming and writing firmware.
+
+                                <br><br>In terms of electronics i mostly work with high power and RF electronics, vacuum tubes, silly stuff for toying around and again, just overall collecting and using more extreme kinds of electronic components
                             </div>
                             <div class="whoami-tags">
                             </div>
                             <div class="card-links">
                                 <a href="https://github.com/9551-Dev" target="_blank" rel="noopener noreferrer">GitHub / 9551-Dev</a>
+                                <a href="https://ko-fi.com/9551_" target="_blank" rel="noopener noreferrer">Found something of mine useful? consider supporting / Ko-fi</a>
                             </div>
                         </div>
                     </div>
                     <div class="whoami-footnote">
                         Meow.
                     </div>
+                </div>
+            </div>
+            <div class="subcategory-group">
+                <div class="subcategory-header">ČEZ Vím proč 2026</div>
+                <div class="grid video-grid">
+                    <div class="card-description" data-no-truncate>
+                        This year for unknown reason i have decided to enter into the Czech "Vím proč" physics video competition, this is the video i created
+                        mostly about VTTC/SSTC and musical tesla coils but also including showcase of different gas ionization and downfall of simpler TC circuits
+                    </div>
+                    <div class="video-container">
+                        <iframe src="https://www.youtube.com/embed/bwYECCXZIXM" title="Moderní Teslovy transformátory (ČEZ Vím Proč)" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    </div>
+                </div>
+                <div class="card-description">
+                    You can vote for my submission <a href="https://www.svetenergie.cz/vim-proc/soutezni-videa/moderni-teslovy-transfomatory-233495">HERE.</a>
                 </div>
             </div>
             <div class="subcategory-group">
@@ -130,14 +170,14 @@
                 </div>
             </div>
             <div class="card">
-                <div class="subcategory-header">CCAA org</div>
+                <div class="subcategory-header jumpable">CCAA org</div>
                 <div class="card-description">Communist Christians Against Alzheimers</div>
                 <div class="card-links">
                     <a href="https://ccaa.info" target="_blank" rel="noopener">ccaa.info</a>
                 </div>
             </div>
             <div class="legacy-block">
-                <h3>legacy stuff</h3>
+                <h3 class="jumpable">legacy stuff</h3>
                 <div class="legacy-lines">
                     <a href="./legacy_index.html">old mainpage</a>
                     <a href="./button/">epic gamer button</a>
