@@ -2,9 +2,8 @@
     "use strict";
     var jumpable_selector = ".jumpable";
 
-    var btns = document.querySelectorAll(".category-btn");
+    var btns     = document.querySelectorAll(".category-btn");
     var sections = document.querySelectorAll(".category-section");
-    var descriptions = document.querySelectorAll(".card-description");
 
     function activate_category(cat) {
         var btn = document.querySelector(".category-btn[data-cat=\"" + cat + "\"]");
