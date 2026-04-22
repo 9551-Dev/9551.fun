@@ -180,15 +180,17 @@ body {
     gap: 1rem;
 }
 .logo a {
-    color: #ffffff;
-    font-size: 1.5rem;
-    font-weight: bold;
-    text-decoration: none;
-    letter-spacing: -0.02em;
+    color: #ffffff !important;
+    font-size: 1.5rem !important;
+    font-weight: bold !important;
+    text-decoration: none !important;
+    letter-spacing: -0.02em !important;
 }
+
 .logo a:hover {
-    opacity: 0.9;
+    opacity: 0.9 !important;
 }
+
 nav {
     display: flex;
     gap: 0.125rem;
@@ -237,12 +239,12 @@ nav {
     z-index: 10;
 }
 .bottom-left a {
-    color: #4a4a4a;
-    text-decoration: none;
-    font-weight: 300;
+    color: #4a4a4a !important;
+    text-decoration: none !important;
+    font-weight: 300 !important;
 }
 .bottom-left a:hover {
-    color: #aaaaaa;
+    color: #aaaaaa !important;
 }
 .bottom-right {
     position: fixed;
