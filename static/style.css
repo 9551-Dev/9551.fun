@@ -186,19 +186,16 @@ body {
     background-attachment: fixed;
     background-blend-mode: overlay;
 }
+
 .container {
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: 0.5rem 2rem;
-    width: 100%;
-    flex: 1;
-    background-color: rgba(10, 10, 10, 0.75);
-    backdrop-filter: blur(2px);
+    padding: 0 2rem;
+    padding-left: 1rem;
 }
 
 @media (min-width: 1101px) {
     .container {
-        padding-right: 220px;
+        padding-left: 18%;
+        padding-right: calc(18% + 180px + 1rem);
     }
 }
 
@@ -694,7 +691,7 @@ a:focus-visible {
 .floating-nav {
     position: fixed;
     top: 90px;
-    right: 0.8rem;
+    right: 2em;
     width: 180px;
     max-height: 55vh;
     background: #141414;
