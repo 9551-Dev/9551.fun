@@ -330,6 +330,7 @@
         make_jumpable_elements_clickable();
         watch_category_changes();
         hook_category_buttons();
+        check_overlap();
     }
 
     truncate_all_descriptions();

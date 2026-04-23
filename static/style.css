@@ -189,11 +189,22 @@ body {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
     background-image: url("./background.jpg");
     background-size: cover;
     background-position: center;
-    background-attachment: fixed;
     background-blend-mode: overlay;
+    background-color: #1a1a1a;
+    z-index: -1;
+    pointer-events: none;
 }
 
 .container {
@@ -795,6 +806,7 @@ a:focus-visible {
 
 .floating-nav {
     position: fixed;
+    visibility: hidden;
     right: 1.5em;
     width: 180px;
     max-height: 55vh;
