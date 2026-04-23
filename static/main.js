@@ -341,10 +341,14 @@
         init_floating_nav();
     }
 
+    const SCROLL_ADD_THRESHOLD    = 70;
+    const SCROLL_REMOVE_THRESHOLD = 30;
+
     function update_navbar_compact() {
-        if (window.scrollY > scroll_threshold) {
+        const scrolled = top_nav.classList.contains("scrolled");
+        if (!scrolled && window.scrollY > SCROLL_ADD_THRESHOLD) {
             top_nav.classList.add("scrolled");
-        } else {
+        } else if (scrolled && window.scrollY < SCROLL_REMOVE_THRESHOLD) {
             top_nav.classList.remove("scrolled");
         }
     }
