@@ -1,0 +1,261 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<head>
+    <title>GuiH documentation</title>
+    <link rel="stylesheet" href="../ldoc.css" type="text/css" />
+</head>
+<body>
+
+<div id="container">
+
+<div id="product">
+	<div id="product_logo"></div>
+	<div id="product_name"><big><b></b></big></div>
+	<div id="product_description"></div>
+</div> <!-- id="product" -->
+
+
+<div id="main">
+
+
+<!-- Menu -->
+
+<div id="navigation">
+<br/>
+<h1>GuiH docs</h1>
+
+
+<ul>
+  <li><a href="../index.html">Index</a></li>
+</ul>
+
+<h2>Contents</h2>
+<ul>
+<li><a href="#Functions">Functions</a></li>
+<li><a href="#Tables">Tables</a></li>
+</ul>
+
+
+<h2>Modules</h2>
+<ul class="nowrap">
+  <li><strong>GuiH.API</strong></li>
+  <li><a href="../modules/guih.main_ui.html">guih.main_ui</a></li>
+  <li><a href="../modules/modules.html">modules</a></li>
+  <li><a href="../modules/presets.html">presets</a></li>
+  <li><a href="../modules/GuiH.lib.algo.html">GuiH.lib.algo</a></li>
+  <li><a href="../modules/GuiH.lib.blbfor.html">GuiH.lib.blbfor</a></li>
+  <li><a href="../modules/GuiH.lib.fuzzy_find.html">GuiH.lib.fuzzy_find</a></li>
+  <li><a href="../modules/GuiH.lib.general.html">GuiH.lib.general</a></li>
+  <li><a href="../modules/GuiH.lib.graphic.html">GuiH.lib.graphic</a></li>
+  <li><a href="../modules/GuiH.lib.log.html">GuiH.lib.log</a></li>
+  <li><a href="../modules/GuiH.lib.ppm.html">GuiH.lib.ppm</a></li>
+  <li><a href="../modules/GuiH.lib.pixelbox.html">GuiH.lib.pixelbox</a></li>
+  <li><a href="../modules/GuiH.lib.sevensh.html">GuiH.lib.sevensh</a></li>
+  <li><a href="../modules/GuiH.lib.termtools.html">GuiH.lib.termtools</a></li>
+  <li><a href="../modules/GuiH.lib.text.html">GuiH.lib.text</a></li>
+  <li><a href="../modules/GuiH.presets.rect.html">GuiH.presets.rect</a></li>
+  <li><a href="../modules/GuiH.presets.tex.html">GuiH.presets.tex</a></li>
+</ul>
+
+</div>
+
+<div id="content">
+
+<h1>Module <code>GuiH.API</code></h1>
+<p>The Main module</p>
+<p></p>
+
+
+<h2><a href="#Functions">Functions</a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#GuiH.new">GuiH.new (terminal[, event_offset_x[, event_offset_y]])</a></td>
+	<td class="summary">Make a new Gui object with the given terminal/window
+ and optionaly event offset</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#GuiH.create_gui">GuiH.create_gui ()</a></td>
+	<td class="summary">Alias for GuiH.new</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#GuiH.load_texture">GuiH.load_texture (path)</a></td>
+	<td class="summary">Used for loading basic textures
+ similiar to the nimg format</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#GuiH.convert_event">GuiH.convert_event (event)</a></td>
+	<td class="summary">Processes an event into a more usable format</td>
+	</tr>
+</table>
+<h2><a href="#Tables">Tables</a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#GuiH.apis">GuiH.apis</a></td>
+	<td class="summary">All of the additional GuiH apis loaded</td>
+	</tr>
+</table>
+
+<br/>
+<br/>
+
+
+    <h2 class="section-header "><a name="Functions"></a>Functions</h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "GuiH.new"></a>
+    <strong>GuiH.new (terminal[, event_offset_x[, event_offset_y]])</strong>
+    </dt>
+    <dd>
+    Make a new Gui object with the given terminal/window
+ and optionaly event offset
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">terminal</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.5">table</a></span>
+         term/window object
+        </li>
+        <li><span class="parameter">event_offset_x</span>
+            <span class="types"><span class="type">number</span></span>
+         sets the horizontal offset of all events
+         (<em>optional</em>)
+        </li>
+        <li><span class="parameter">event_offset_y</span>
+            <span class="types"><span class="type">number</span></span>
+         sets the vertical offset of all events
+         (<em>optional</em>)
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.5">table</a></span>
+        GuiH.MAIN_UI
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="keyword">local</span> GuiH = <span class="global">require</span>(<span class="string">"GuiH"</span>)
+<span class="keyword">local</span> gui = GuiH.new(term.current())
+<span class="global">print</span>(gui)</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "GuiH.create_gui"></a>
+    <strong>GuiH.create_gui ()</strong>
+    </dt>
+    <dd>
+    Alias for GuiH.new
+
+
+
+
+
+    <h3>See also:</h3>
+    <ul>
+         <a href="../modules/GuiH.API.html#GuiH.new">GuiH.new</a>
+    </ul>
+
+
+</dd>
+    <dt>
+    <a name = "GuiH.load_texture"></a>
+    <strong>GuiH.load_texture (path)</strong>
+    </dt>
+    <dd>
+    Used for loading basic textures
+ similiar to the nimg format
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">path</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">{string/table}</a></span>
+         Path to the texture or the texture data in a table
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.5">table</a></span>
+        GuiH.texture
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="keyword">local</span> GuiH = <span class="global">require</span>(<span class="string">"GuiH"</span>)
+<span class="keyword">local</span> texture = GuiH.load_texture({})
+<span class="global">print</span>(texture)</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "GuiH.convert_event"></a>
+    <strong>GuiH.convert_event (event)</strong>
+    </dt>
+    <dd>
+    Processes an event into a more usable format
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">event</span>
+         all of the events results unpacked
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.5">table</a></span>
+        GuiH.event
+    </ol>
+
+
+
+
+</dd>
+</dl>
+    <h2 class="section-header "><a name="Tables"></a>Tables</h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "GuiH.apis"></a>
+    <strong>GuiH.apis</strong>
+    </dt>
+    <dd>
+    All of the additional GuiH apis loaded
+
+
+
+
+
+    <h3>See also:</h3>
+    <ul>
+    </ul>
+
+
+</dd>
+</dl>
+
+
+</div> <!-- id="content" -->
+</div> <!-- id="main" -->
+<div id="about">
+<i>generated by <a href="http://github.com/stevedonovan/LDoc">LDoc 1.4.6</a></i>
+<i style="float:right;">Last updated 2022-06-12 21:04:23 </i>
+</div> <!-- id="about" -->
+</div> <!-- id="container" -->
+</body>
+</html>
