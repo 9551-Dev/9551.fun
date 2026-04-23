@@ -2,7 +2,6 @@
     "use strict";
 
     var jumpable_selector = ".jumpable";
-    var scroll_threshold  = 50;
 
     var btns         = document.querySelectorAll(".category-btn");
     var sections     = document.querySelectorAll(".category-section");
@@ -417,15 +416,5 @@
     const spacer = document.createElement("div");
     spacer.className = "top-nav-spacer";
     top_nav.insertAdjacentElement("afterend", spacer);
-
-    function get_nav_full_height() {
-        const had_scrolled = top_nav.classList.contains("scrolled");
-        if (had_scrolled) top_nav.classList.remove("scrolled");
-        const full_height = top_nav.offsetHeight;
-        if (had_scrolled) top_nav.classList.add("scrolled");
-        return full_height;
-    }
-
-    const initial_height = get_nav_full_height();
-    spacer.style.height  = (initial_height-25) + "px"
+    spacer.style.height  = 0
 })();
