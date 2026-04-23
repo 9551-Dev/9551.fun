@@ -38,20 +38,14 @@
     }
 
     function update_scroll_padding() {
-        var navbar = document.querySelector(".top-nav");
-        if (navbar) {
-            var height = navbar.offsetHeight;
-            document.documentElement.style.scrollPaddingTop = (height + 8) + "px";
-        }
+        var height = top_nav.offsetHeight;
+        document.documentElement.style.scrollPaddingTop = (height + 8) + "px";
     }
 
-    var navbar = document.querySelector(".top-nav");
-    if (navbar) {
-        var resize_observer = new ResizeObserver(function() {
-            update_scroll_padding();
-        });
-        resize_observer.observe(navbar);
-    }
+    var resize_observer = new ResizeObserver(function() {
+        update_scroll_padding();
+    });
+    resize_observer.observe(top_nav);
 
     window.addEventListener("scroll", function() {
         update_scroll_padding();
