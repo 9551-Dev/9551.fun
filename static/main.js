@@ -37,6 +37,28 @@
         return true;
     }
 
+    function update_scroll_padding() {
+        var navbar = document.querySelector(".top-nav");
+        if (navbar) {
+            var height = navbar.offsetHeight;
+            document.documentElement.style.scrollPaddingTop = (height + 8) + "px";
+        }
+    }
+
+    var navbar = document.querySelector(".top-nav");
+    if (navbar) {
+        var resize_observer = new ResizeObserver(function() {
+            update_scroll_padding();
+        });
+        resize_observer.observe(navbar);
+    }
+
+    window.addEventListener("scroll", function() {
+        update_scroll_padding();
+    });
+
+    update_scroll_padding();
+
     window.addEventListener("hashchange", function() {
         var hash = window.location.hash.slice(1);
         if (!hash) {
