@@ -4,6 +4,12 @@
     box-sizing: border-box;
 }
 
+html, body {
+    overflow-x: hidden;
+    width: 100%;
+    position: relative;
+}
+
 /* NUKE all constraints on the video grid */
 .video-grid {
     display: flex !important;
@@ -43,6 +49,16 @@
     }
 }
 
+@media (max-width: 550px) {
+    .video-grid .card-description {
+        max-width: 100%;
+        min-width: 100%;
+    }
+    .video-grid .video-container {
+        min-width: 100% !important;
+    }
+}
+
 .whoami-card {
     margin-bottom: 0;
 }
@@ -72,6 +88,7 @@
 .whoami-text {
     flex: 1;
     min-width: 200px;
+    word-break: break-word;
 }
 
 .whoami-text h3 {
@@ -129,7 +146,13 @@
     .whoami-grid {
         flex-direction: column;
         align-items: center;
-        text-align: center;
+    }
+    .whoami-avatar {
+        margin-bottom: 0.5rem;
+    }
+    .whoami-text {
+        text-align: left;
+        width: 100%;
     }
     .whoami-tags {
         justify-content: center;
@@ -139,6 +162,13 @@
     }
     .whoami-text h3 {
         text-align: center;
+    }
+    .whoami-text {
+        padding: 0 0.5rem;
+    }
+    .whoami-tags span {
+        font-size: 0.75rem;
+        padding: 0.2rem 0.6rem;
     }
 }
 
@@ -164,6 +194,12 @@ body {
     flex: 1;
     background-color: rgba(10, 10, 10, 0.75);
     backdrop-filter: blur(2px);
+}
+
+@media (min-width: 1101px) {
+    .container {
+        padding-right: 220px;
+    }
 }
 
 .top-nav {
@@ -231,10 +267,56 @@ nav {
     color: #a8c9ff;
 }
 
+@media (max-width: 700px) {
+    .top-nav {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 0.75rem;
+        padding: 0.75rem 1rem;
+    }
+    .logo a {
+        font-size: 1.3rem !important;
+    }
+    nav {
+        order: 3;
+        width: 100%;
+        justify-content: center;
+        flex-wrap: wrap;
+        margin-left: 0;
+        background: transparent;
+        padding: 0;
+        gap: 0.25rem;
+    }
+    .category-btn {
+        font-size: 0.9rem;
+        padding: 0.4rem 0.8rem;
+        background: #1f1f1f;
+    }
+    .nav-contact {
+        margin-left: 0;
+        font-size: 1rem;
+        padding: 0.4rem 0.8rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .category-btn {
+        font-size: 0.75rem;
+        padding: 0.3rem 0.6rem;
+    }
+    .nav-contact {
+        font-size: 0.85rem;
+        padding: 0.3rem 0.6rem;
+    }
+    .logo a {
+        font-size: 1.1rem !important;
+    }
+}
+
 .bottom-left {
     position: fixed;
-    bottom: 1rem;
-    left: 1.5rem;
+    bottom: 0.75rem;
+    left: 1rem;
     font-size: 0.9rem;
     z-index: 10;
 }
@@ -248,8 +330,8 @@ nav {
 }
 .bottom-right {
     position: fixed;
-    bottom: 1rem;
-    right: 1.5rem;
+    bottom: 0.75rem;
+    right: 1rem;
     z-index: 10;
 }
 .github-avatar {
@@ -260,6 +342,12 @@ nav {
 }
 .github-avatar:hover {
     border-color: #8ab4f8;
+}
+@media (max-width: 650px) {
+    .github-avatar {
+        width: 40px;
+        height: 40px;
+    }
 }
 
 .category-section {
@@ -307,6 +395,7 @@ h2:first-of-type {
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
     gap: 1.2rem;
 }
+
 .card {
     background: #141414;
     padding: 1.2rem 1rem;
@@ -351,6 +440,7 @@ h2:first-of-type {
 .card .title-with-image h3 {
     flex: 1;
     margin-bottom: 0;
+    word-break: break-word;
 }
 .card .title-with-image .card-image-inline {
     max-height: 32px;
@@ -360,6 +450,7 @@ h2:first-of-type {
     margin-left: 0.5rem;
     border-radius: 4px;
     border: 1px solid #333;
+    flex-shrink: 0;
 }
 .card .title-with-image .card-image-inline.large {
     max-height: 48px;
@@ -478,6 +569,26 @@ h2:first-of-type {
     background: #2d2d2d;
     border-color: #8ab4f8;
     color: #a8c9ff;
+}
+
+@media (max-width: 600px) {
+    .card-links {
+        flex-wrap: wrap;
+        gap: 0.4rem;
+    }
+    .card-links a {
+        white-space: normal;
+        word-break: break-word;
+        padding: 0.5rem 0.2rem;
+        font-size: 0.85rem;
+        flex: 1 1 auto;
+        min-width: 80px;
+    }
+    .copyable-block {
+        white-space: normal;
+        word-break: break-all;
+        font-size: 0.85rem;
+    }
 }
 .card-footer {
     margin-top: auto;
@@ -643,9 +754,24 @@ a:focus-visible {
     border-left-color: #8ab4f8;
 }
 
-@media (max-width: 1000px) {
+@media (max-width: 1100px) {
     .floating-nav {
         display: none;
+    }
+    .container {
+        padding-right: 2rem;
+    }
+}
+
+@media (max-width: 700px) {
+    .container {
+        padding: 0.5rem 1rem;
+    }
+}
+
+@media (min-width: 1200px) {
+    .grid {
+        grid-template-columns: repeat(4, 1fr);
     }
 }
 

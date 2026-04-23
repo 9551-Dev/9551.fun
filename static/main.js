@@ -256,9 +256,33 @@
         });
     }
 
+    function make_jumpable_elements_clickable() {
+        var active_section = document.querySelector(".category-section.active");
+        if (!active_section) return;
+        var targets = [
+            ...active_section.querySelectorAll(".subcategory-group"),
+            ...active_section.querySelectorAll(jumpable_selector)
+        ];
+        targets.forEach(function(el) {
+            if (!el.id) return;
+            var category_id = active_section.id;
+            var combined_hash = category_id + "--" + el.id;
+            if (el._hash_click_handler) {
+                el.removeEventListener("click", el._hash_click_handler);
+            }
+            var handler = function() {
+                window.location.hash = combined_hash;
+            };
+            el.addEventListener("click", handler);
+            el._hash_click_handler = handler;
+            el.style.cursor = "pointer";
+        });
+    }
+
     function init_floating_nav() {
         assign_jumpable_ids();
         build_floating_nav();
+        make_jumpable_elements_clickable();
         watch_category_changes();
         hook_category_buttons();
     }
