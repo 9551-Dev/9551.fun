@@ -205,6 +205,7 @@ body {
 
 .top-nav {
     width: 100%;
+    position: absolute;
     background: #0c0c0c;
     border-bottom: 1px solid #2a2a2a;
     position: sticky;

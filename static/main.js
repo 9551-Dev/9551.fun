@@ -342,7 +342,7 @@
     }
 
     const SCROLL_ADD_THRESHOLD    = 70;
-    const SCROLL_REMOVE_THRESHOLD = 30;
+    const SCROLL_REMOVE_THRESHOLD = 2;
 
     function update_navbar_compact() {
         const scrolled = top_nav.classList.contains("scrolled");
@@ -407,6 +407,7 @@
     window.addEventListener("load", function() {
         check_overlap();
     });
+
     if (document.readyState === "complete") {
         check_overlap();
     } else {
