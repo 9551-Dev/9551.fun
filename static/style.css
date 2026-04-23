@@ -9,6 +9,11 @@ html, body {
     position: static;
 }
 
+body {
+    margin: 0;
+    padding: 0;
+}
+
 .app {
     overflow-x: hidden;
     width: 100%;
@@ -205,17 +210,27 @@ body {
 
 .top-nav {
     width: 100%;
-    position: absolute;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
     background: #0c0c0c;
     border-bottom: 1px solid #2a2a2a;
     position: sticky;
-    top: 0;
     z-index: 100;
     padding: 0.5rem 1rem;
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 1rem;
+}
+
+.top-nav-spacer {
+    display: block;
+    width: 100%;
+    background: transparent;
+    pointer-events: none;
 }
 
 .top-nav,

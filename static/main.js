@@ -341,8 +341,8 @@
         init_floating_nav();
     }
 
-    const SCROLL_ADD_THRESHOLD    = 70;
-    const SCROLL_REMOVE_THRESHOLD = 2;
+    const SCROLL_ADD_THRESHOLD    = 60;
+    const SCROLL_REMOVE_THRESHOLD = 5;
 
     function update_navbar_compact() {
         const scrolled = top_nav.classList.contains("scrolled");
@@ -413,4 +413,19 @@
     } else {
         window.addEventListener("load", check_overlap);
     }
+
+    const spacer = document.createElement("div");
+    spacer.className = "top-nav-spacer";
+    top_nav.insertAdjacentElement("afterend", spacer);
+
+    function get_nav_full_height() {
+        const had_scrolled = top_nav.classList.contains("scrolled");
+        if (had_scrolled) top_nav.classList.remove("scrolled");
+        const full_height = top_nav.offsetHeight;
+        if (had_scrolled) top_nav.classList.add("scrolled");
+        return full_height;
+    }
+
+    const initial_height = get_nav_full_height();
+    spacer.style.height  = initial_height + "px"
 })();
