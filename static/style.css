@@ -207,6 +207,16 @@ body::before {
     pointer-events: none;
 }
 
+body.meow-bg::before {
+    background-image: url("./meow_transparent.png");
+    background-size: auto;
+    background-repeat: repeat;
+    background-position: top left;
+    background-blend-mode: overlay;
+    background-color: #1a1a1a;
+    filter: grayscale(100%) contrast(120%);
+}
+
 .container {
     max-width: 60%;
     margin: 0 auto;
