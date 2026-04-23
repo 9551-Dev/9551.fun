@@ -370,28 +370,46 @@
 
     window.addEventListener("resize", function() {
         update_floating_nav_top();
+        check_overlap();
     });
 
-    window.addEventListener("scroll", update_navbar_compact);
+    window.addEventListener("scroll", function() {
+        update_navbar_compact();
+        check_overlap();
+    });
 
     update_navbar_compact();
     requestAnimationFrame(update_floating_nav_top);
 
-    function check_overlap() {
-        var nav_rect       = floating_nav.getBoundingClientRect();
-        var container_rect = container.getBoundingClientRect();
+    var last_overlap_state = null;
 
-        if (nav_rect.left <= container_rect.right) {
-            floating_nav.style.visibility = "hidden";
-        } else {
-            floating_nav.style.visibility = "visible";
+    function check_overlap() {
+        var viewport_width = window.innerWidth;
+        // (viewport_width + 0.6*viewport_width)/2 = 0.8 * viewport_width
+        var container_natural_right = 0.8 * viewport_width;
+        var nav_rect = floating_nav.getBoundingClientRect();
+        var nav_left = nav_rect.left;
+
+        var would_overlap = (nav_left <= container_natural_right);
+
+        if (would_overlap !== last_overlap_state) {
+            if (would_overlap) {
+                floating_nav.style.visibility = "hidden";
+                container.classList.add("overlap-mode");
+            } else {
+                floating_nav.style.visibility = "visible";
+                container.classList.remove("overlap-mode");
+            }
+            last_overlap_state = would_overlap;
         }
     }
 
-    window.addEventListener("load", check_overlap);
-    window.addEventListener("resize", check_overlap);
-    window.addEventListener("scroll", check_overlap);
-
-    var observer = new MutationObserver(check_overlap);
-    observer.observe(document.body, { childList: true, subtree: true, attributes: true, attributeFilter: ["style", "class"] });
+    window.addEventListener("load", function() {
+        check_overlap();
+    });
+    if (document.readyState === "complete") {
+        check_overlap();
+    } else {
+        window.addEventListener("load", check_overlap);
+    }
 })();
