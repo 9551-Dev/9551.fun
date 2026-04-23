@@ -50,19 +50,12 @@ body {
 }
 
 @media (max-width: 700px) {
-    .video-grid {
-        flex-direction: column !important;
-    }
     .video-grid .card-description {
         max-width: 100%;
     }
 }
 
 @media (max-width: 550px) {
-    .video-grid .card-description {
-        max-width: 100%;
-        min-width: 100%;
-    }
     .video-grid .video-container {
         min-width: 100% !important;
     }
