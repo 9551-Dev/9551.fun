@@ -731,6 +731,7 @@ h2:first-of-type {
     color: #ffffff;
     border-color: #ffffff;
 }
+
 .download-link {
     color: #8ab4f8;
     font-size: 0.9rem;
@@ -745,6 +746,29 @@ h2:first-of-type {
 .download-link:hover {
     background: #2a2a2a;
     border-color: #8ab4f8;
+}
+
+.text-wrappable {
+    word-break: break-word;
+    overflow-wrap: break-word;
+    white-space: normal;
+    max-width: 100%;
+    font-size: clamp(0.75rem, 4vw, 1rem);
+}
+
+.copyable-block,
+.download-link {
+    word-break: break-word;
+    overflow-wrap: break-word;
+    white-space: normal;
+    max-width: 100%;
+}
+
+@media (max-width: 550px) {
+    .copyable-block,
+    .download-link {
+        font-size: 0.8rem;
+    }
 }
 
 .legacy-block {
