@@ -2,9 +2,13 @@
     "use strict";
 
     var jumpable_selector = ".jumpable";
+    var scroll_threshold  = 50;
 
-    var btns     = document.querySelectorAll(".category-btn");
-    var sections = document.querySelectorAll(".category-section");
+    var btns         = document.querySelectorAll(".category-btn");
+    var sections     = document.querySelectorAll(".category-section");
+    var floating_nav = document.querySelector(".floating-nav")
+    var top_nav      = document.querySelector(".top-nav");
+    var container    = document.querySelector('.container');
 
     function activate_category(cat) {
         var btn = document.querySelector(".category-btn[data-cat=\"" + cat + "\"]");
@@ -336,4 +340,54 @@
     } else {
         init_floating_nav();
     }
+
+    function update_navbar_compact() {
+        if (window.scrollY > scroll_threshold) {
+            top_nav.classList.add("scrolled");
+        } else {
+            top_nav.classList.remove("scrolled");
+        }
+    }
+
+    function update_floating_nav_top() {
+        var computed_style = window.getComputedStyle(floating_nav);
+        var right_margin_px = parseFloat(computed_style.right);
+        if (isNaN(right_margin_px)) {
+            right_margin_px = 32;
+        }
+        var navbar_height = top_nav.offsetHeight;
+        floating_nav.style.top = (navbar_height + right_margin_px) + "px";
+    }
+
+    var resize_observer = new ResizeObserver(function() {
+        update_floating_nav_top();
+    });
+    resize_observer.observe(top_nav);
+
+    window.addEventListener("resize", function() {
+        update_floating_nav_top();
+    });
+
+    window.addEventListener("scroll", update_navbar_compact);
+
+    update_navbar_compact();
+    requestAnimationFrame(update_floating_nav_top);
+
+    function check_overlap() {
+        var nav_rect       = floating_nav.getBoundingClientRect();
+        var container_rect = container.getBoundingClientRect();
+
+        if (nav_rect.left <= container_rect.right) {
+            floating_nav.style.visibility = "hidden";
+        } else {
+            floating_nav.style.visibility = "visible";
+        }
+    }
+
+    window.addEventListener("load", check_overlap);
+    window.addEventListener("resize", check_overlap);
+    window.addEventListener("scroll", check_overlap);
+
+    var observer = new MutationObserver(check_overlap);
+    observer.observe(document.body, { childList: true, subtree: true, attributes: true, attributeFilter: ["style", "class"] });
 })();
