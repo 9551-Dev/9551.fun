@@ -1,0 +1,2 @@
+--- library for semantic versioning
+-- @module[kind=apis] version

@@ -1,0 +1,160 @@
+@font-face {
+    font-family: "FireCodeSource";
+    src: url("../fonts/FiraCode-VF.ttf") format("truetype");
+}
+
+body {
+    margin: 0;
+    font-family: "FireCodeSource",Tahoma,Geneva,Verdana,sans-serif;
+    background-color: #1E1E1E;
+    background-image: url(/meow_transparent.png);
+    color: #E0E0E0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+header {
+    text-align: left;
+    padding: 20px;
+    background-color: #2B2B2B;
+    border-bottom: 1px solid #333;
+}
+
+h1 {
+    margin: 0;
+    font-size: 2.5rem;
+    color: #4FC3F7;
+}
+
+p {
+    margin: 10px 0 0;
+    font-size: 1.2rem;
+    color: #BBB;
+}
+
+main {
+    flex: 1;
+    padding: 20px;
+    padding-bottom: 0px;
+}
+
+.resources {
+    background-color: #000c;
+    max-width: 1000px;
+    margin: 0 auto;
+    margin-top: 0px;
+    border-width: 10px;
+    border-style: solid;
+    border-color: #0000;
+}
+
+h2 {
+    font-size: 2rem;
+    color: #4FC3F7;
+    border-bottom: 2px solid #333;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+    margin-top: 0px;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+    margin-left: 20px;
+    position: relative;
+}
+
+ul ul {
+    margin-left: 20px;
+    position: relative;
+}
+
+ul::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: #555;
+    z-index: -1;
+}
+
+li {
+    margin: 10px 0;
+    position: relative;
+    padding-left: 20px;
+}
+
+li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    height: 100%;
+    width: 2px;
+    background: #fff;
+    z-index: -1;
+}
+
+.group {
+    margin-top: 5px;
+}
+
+a[class=group] {
+    text-decoration: none;
+    font-size: 1.2rem;
+    color: #ffffff;
+    transition: color 0.2s;
+}
+
+a[class=group]:hover,
+a[class=group]:focus {
+    color: #8080FF;
+    text-decoration: none;
+}
+
+a {
+    text-decoration: none;
+    font-size: 1.2rem;
+    color: #8AB4F8;
+}
+
+footer {
+    text-align: center;
+    padding: 10px;
+    background-color: #2B2B2B;
+    border-top: 1px solid #333;
+}
+
+footer p {
+    margin: 5px 0;
+    font-size: 0.9rem;
+    color: #666;
+}
+
+footer a {
+    color: #8AB4F8;
+    text-decoration: none;
+}
+
+.meow {
+    position: fixed;
+    bottom: 3px;
+    right: 3px;
+    text-align: center;
+    background-color: #000;
+}
+
+.meow p {
+    margin: 0;
+    margin-right: 3px;
+    font-size: 1rem;
+    color: #E0E0E0;
+}
+
+.meow img {
+    max-width: 50px;
+    display: block;
+    margin-top: 5px;
+}

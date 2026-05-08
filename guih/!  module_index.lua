@@ -1,0 +1,13 @@
+--- list of all the modules in GuiH
+-- @module modules
+-- @see GuiH.lib.algo
+-- @see GuiH.lib.blbfor
+-- @see GuiH.lib.fuzzy_find
+-- @see GuiH.lib.general
+-- @see GuiH.lib.graphic
+-- @see GuiH.lib.log
+-- @see GuiH.lib.ppm
+-- @see GuiH.lib.pixelbox
+-- @see GuiH.lib.sevensh
+-- @see GuiH.lib.termtools
+-- @see GuiH.lib.text

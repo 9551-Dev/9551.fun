@@ -1,0 +1,391 @@
+<html><head><style>pre,
+        code {
+          font-family: Menlo, Monaco, "Courier New", monospace;
+        }
+
+        pre {
+          padding: .5rem;
+          line-height: 1.25;
+          overflow-x: scroll;
+        }
+
+        @media print {
+          *,
+          *:before,
+          *:after {
+            background: transparent !important;
+            color: #000 !important;
+            box-shadow: none !important;
+            text-shadow: none !important;
+          }
+
+          a,
+          a:visited {
+            text-decoration: underline;
+          }
+
+          a[href]:after {
+            content: " (" attr(href) ")";
+          }
+
+          abbr[title]:after {
+            content: " (" attr(title) ")";
+          }
+
+          a[href^="#"]:after,
+          a[href^="javascript:"]:after {
+            content: "";
+          }
+
+          pre,
+          blockquote {
+            border: 1px solid #999;
+            page-break-inside: avoid;
+          }
+
+          thead {
+            display: table-header-group;
+          }
+
+          tr,
+          img {
+            page-break-inside: avoid;
+          }
+
+          img {
+            max-width: 100% !important;
+          }
+
+          p,
+          h2,
+          h3 {
+            orphans: 3;
+            widows: 3;
+          }
+
+          h2,
+          h3 {
+            page-break-after: avoid;
+          }
+        }
+
+        a,
+        a:visited {
+          color: #01ff70;
+        }
+
+        a:hover,
+        a:focus,
+        a:active {
+          color: #2ecc40;
+        }
+
+        .retro-no-decoration {
+          text-decoration: none;
+        }
+
+        html {
+          font-size: 12px;
+        }
+
+        @media screen and (min-width: 32rem) and (max-width: 70rem) {
+          html {
+            font-size: 15px;
+          }
+        }
+
+        @media screen and (min-width: 48rem) {
+          html {
+            font-size: 16px;
+          }
+        }
+
+        body {
+          line-height: 1.85;
+        }
+
+        p,
+        .retro-p {
+          font-size: 1rem;
+          margin-bottom: 1.3rem;
+        }
+
+        h1,
+        .retro-h1,
+        h2,
+        .retro-h2,
+        h3,
+        .retro-h3,
+        h4,
+        .retro-h4 {
+          margin: 1.414rem 0 .5rem;
+          font-weight: inherit;
+          line-height: 1.42;
+        }
+
+        h1,
+        .retro-h1 {
+          margin-top: 0;
+          font-size: 3.998rem;
+        }
+
+        h2,
+        .retro-h2 {
+          font-size: 2.827rem;
+        }
+
+        h3,
+        .retro-h3 {
+          font-size: 1.999rem;
+        }
+
+        h4,
+        .retro-h4 {
+          font-size: 1.414rem;
+        }
+
+        h5,
+        .retro-h5 {
+          font-size: 1.121rem;
+        }
+
+        h6,
+        .retro-h6 {
+          font-size: .88rem;
+        }
+
+        small,
+        .retro-small {
+          font-size: .707em;
+        }
+
+        img,
+        canvas,
+        iframe,
+        video,
+        svg,
+        select,
+        textarea {
+          max-width: 100%;
+        }
+
+        html,
+        body {
+          background-color: #222;
+          min-height: 100%;
+        }
+
+        html {
+          font-size: 100%;
+        }
+
+        body {
+          color: #fafafa;
+          font-family: "Courier New";
+          line-height: 1.45;
+          margin: 6rem auto 1rem;
+          max-width: 120rem;
+          padding: .25rem;
+        }
+
+        pre {
+          background-color: #333;
+        }
+
+        blockquote {
+          border-left: 3px solid #01ff70;
+          padding-left: 1rem;
+        }</style></head><body><h1 id="lua-api-for-debugging-and-tracing">Lua API for Debugging and Tracing</h1>
+<p>*warning: this article is GPT generated and some info might not be accurate* 
+Lua, a powerful and lightweight scripting language, offers a comprehensive set of debugging and tracing functions through its API. These functions allow developers to gain insights into their code&#39;s execution, monitor performance, and diagnose issues. In this course, we will dive into the Lua debugging API, exploring its various functions, arguments, and practical examples.</p>
+<h2 id="table-of-contents">Table of Contents</h2>
+<ol>
+<li><a href="#introduction-to-debugging-in-lua">Introduction to Debugging in Lua</a></li>
+<li><a href="#understanding-debug-hooks">Understanding Debug Hooks</a></li>
+<li><a href="#debug-api-functions">Debug API Functions</a><ul>
+<li><a href="#debug-sethook">debug.sethook</a></li>
+<li><a href="#debug-gethook">debug.gethook</a></li>
+<li><a href="#debug-getinfo">debug.getinfo</a></li>
+<li><a href="#debug-getlocal">debug.getlocal</a></li>
+<li><a href="#debug-setlocal">debug.setlocal</a></li>
+<li><a href="#debug-getupvalue">debug.getupvalue</a></li>
+<li><a href="#debug-setupvalue">debug.setupvalue</a></li>
+<li><a href="#debug-getuservalue">debug.getuservalue</a></li>
+<li><a href="#debug-setuservalue">debug.setuservalue</a></li>
+<li><a href="#debug-upvalueid">debug.upvalueid</a></li>
+<li><a href="#debug-upvaluejoin">debug.upvaluejoin</a></li>
+</ul>
+</li>
+<li><a href="#abstract-string-inputs">Abstract String Inputs</a></li>
+<li><a href="#exploring-common-string-input-types">Exploring Common String Input Types</a></li>
+<li><a href="#code-examples">Code Examples</a><ul>
+<li><a href="#using-debug-sethook-for-tracing">Using debug.sethook for Tracing</a></li>
+<li><a href="#inspecting-function-information-with-debug-getinfo">Inspecting Function Information with debug.getinfo</a></li>
+<li><a href="#manipulating-local-variables">Manipulating Local Variables</a></li>
+<li><a href="#examining-upvalues">Examining Upvalues</a></li>
+<li><a href="#accessing-user-values">Accessing User Values</a></li>
+</ul>
+</li>
+<li><a href="#conclusion">Conclusion</a></li>
+</ol>
+<h2 id="1-introduction-to-debugging-in-lua">1. Introduction to Debugging in Lua</h2>
+<p>Before we delve into the specifics of Lua&#39;s debugging API, let&#39;s understand the importance of debugging in the software development process. Debugging is the process of identifying and resolving errors, anomalies, and performance issues within a program. In Lua, the debugging API provides developers with tools to monitor and analyze code execution, enabling efficient debugging and optimization.</p>
+<h2 id="2-understanding-debug-hooks">2. Understanding Debug Hooks</h2>
+<p>Debug hooks are fundamental to Lua&#39;s debugging mechanism. A debug hook is a function that Lua calls during specific events, such as line execution or function calls. By setting a debug hook, developers can gain insights into code execution flow and gather valuable information for debugging and profiling purposes.</p>
+<h2 id="3-debug-api-functions">3. Debug API Functions</h2>
+<h3 id="debug-sethook">debug.sethook</h3>
+<p>The <code>debug.sethook</code> function allows you to set a debug hook, specifying the hook function and events to trigger the hook. It takes the following arguments:</p>
+<ul>
+<li><code>hook</code> (function): The debug hook function to be executed during specified events.</li>
+<li><code>mask</code> (string): A string defining the events that trigger the hook.</li>
+<li><code>count</code> (number, optional): The number of instructions between hook calls.</li>
+</ul>
+<p>Example:</p>
+<pre><code class="lang-lua"><span class="hljs-keyword">debug</span>.sethook(<span class="hljs-keyword">print</span>, <span class="hljs-string">"crl"</span>, <span class="hljs-number">10</span>) -- Calls <span class="hljs-string">'print'</span> <span class="hljs-keyword">on</span> <span class="hljs-keyword">call</span>, <span class="hljs-keyword">return</span>, <span class="hljs-built_in">and</span> <span class="hljs-built_in">line</span> events after every <span class="hljs-number">10</span> instructions.
+</code></pre>
+<h3 id="debug-gethook">debug.gethook</h3>
+<p>The <code>debug.gethook</code> function retrieves the currently set debug hook function, mask, and count.</p>
+<p>Example:</p>
+<pre><code class="lang-lua"><span class="hljs-keyword">local</span> hook, mask, <span class="hljs-keyword">count</span> = debug.gethook()
+<span class="hljs-keyword">print</span>(<span class="hljs-string">"Current hook:"</span>, hook, <span class="hljs-string">"Mask:"</span>, mask, <span class="hljs-string">"Count:"</span>, <span class="hljs-keyword">count</span>)
+</code></pre>
+<h3 id="debug-getinfo">debug.getinfo</h3>
+<p>The <code>debug.getinfo</code> function retrieves information about a function. It takes a function or a stack level as an argument and returns a table with details about the function.</p>
+<p>Example:</p>
+<pre><code class="lang-lua"><span class="hljs-attribute">local</span> <span class="hljs-literal">info</span> = <span class="hljs-literal">debug</span>.getinfo(someFunction)
+print(<span class="hljs-string">"Function name:"</span>, <span class="hljs-literal">info</span>.name, <span class="hljs-string">"Source:"</span>, <span class="hljs-literal">info</span>.source, <span class="hljs-string">"Line:"</span>, <span class="hljs-literal">info</span>.currentline)
+</code></pre>
+<h3 id="debug-getlocal">debug.getlocal</h3>
+<p>The <code>debug.getlocal</code> function retrieves the value of a local variable in a given function and stack level.</p>
+<p>Example:</p>
+<pre><code class="lang-lua"><span class="hljs-keyword">local</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">someFunction</span><span class="hljs-params">()</span></span>
+    <span class="hljs-keyword">local</span> localVar = <span class="hljs-string">"Hello, Lua!"</span>
+    <span class="hljs-keyword">local</span> name, value = <span class="hljs-built_in">debug</span>.getlocal(<span class="hljs-number">1</span>, <span class="hljs-number">1</span>)
+    <span class="hljs-built_in">print</span>(<span class="hljs-string">"Local variable name:"</span>, name, <span class="hljs-string">"Value:"</span>, value)
+<span class="hljs-keyword">end</span>
+</code></pre>
+<h3 id="debug-setlocal">debug.setlocal</h3>
+<p>The <code>debug.setlocal</code> function modifies the value of a local variable in a given function and stack level.</p>
+<p>Example:</p>
+<pre><code class="lang-lua"><span class="hljs-keyword">local</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">modifyLocal</span><span class="hljs-params">()</span></span>
+    <span class="hljs-keyword">local</span> localVar = <span class="hljs-string">"Hello"</span>
+    <span class="hljs-built_in">debug</span>.setlocal(<span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-string">"localVar"</span>, <span class="hljs-string">"Modified value"</span>)
+<span class="hljs-keyword">end</span>
+</code></pre>
+<h3 id="debug-getupvalue">debug.getupvalue</h3>
+<p>The <code>debug.getupvalue</code> function retrieves the value of an upvalue from a closure.</p>
+<p>Example:</p>
+<pre><code class="lang-lua"><span class="hljs-keyword">local</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">closureExample</span><span class="hljs-params">()</span></span>
+    <span class="hljs-keyword">local</span> upvalue = <span class="hljs-string">"Upvalue data"</span>
+    <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span></span> <span class="hljs-keyword">return</span> upvalue <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span>
+
+<span class="hljs-keyword">local</span> getUpvalue = <span class="hljs-built_in">debug</span>.getupvalue(closureExample(), <span class="hljs-number">1</span>)
+<span class="hljs-built_in">print</span>(<span class="hljs-string">"Upvalue:"</span>, getUpvalue)
+</code></pre>
+<h3 id="debug-setupvalue">debug.setupvalue</h3>
+<p>The <code>debug.setupvalue</code> function sets the value of an upvalue in a closure.</p>
+<p>Example:</p>
+<pre><code class="lang-lua"><span class="hljs-keyword">local</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">modifyUpvalue</span><span class="hljs-params">()</span></span>
+    <span class="hljs-keyword">local</span> upvalue = <span class="hljs-string">"Original"</span>
+    <span class="hljs-keyword">local</span> closure = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span></span> <span class="hljs-keyword">return</span> upvalue <span class="hljs-keyword">end</span>
+    <span class="hljs-built_in">debug</span>.setupvalue(closure, <span class="hljs-number">1</span>, <span class="hljs-string">"Modified"</span>)
+<span class="hljs-keyword">end</span>
+</code></pre>
+<h3 id="debug-getuservalue">debug.getuservalue</h3>
+<p>The <code>debug.getuservalue</code> function retrieves the user value associated with a userdata.</p>
+<p>Example:</p>
+<pre><code class="lang-lua"><span class="hljs-keyword">local</span> userdata = newuserdata()
+<span class="hljs-keyword">local</span> uservalue = <span class="hljs-keyword">debug</span>.getuservalue(userdata)
+<span class="hljs-keyword">print</span>(<span class="hljs-string">"User value:"</span>, uservalue)
+</code></pre>
+<h3 id="debug-setuservalue">debug.setuservalue</h3>
+<p>The <code>debug.setuservalue</code> function sets the user value associated with a userdata.</p>
+<p>Example:</p>
+<pre><code class="lang-lua"><span class="hljs-keyword">local</span> userdata = newuserdata()
+<span class="hljs-keyword">debug</span>.setuservalue(userdata, <span class="hljs-string">"My user value"</span>)
+</code></pre>
+<h3 id="debug-upvalueid">debug.upvalueid</h3>
+<p>The <code>debug.upvalueid</code> function returns a unique identifier for an upvalue of a closure.</p>
+<p>Example:</p>
+<pre><code class="lang-lua"><span class="hljs-keyword">local</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">closureWithUpvalue</span><span class="hljs-params">()</span></span>
+    <span class="hljs-keyword">local</span> upvalue = <span class="hljs-string">"Data"</span>
+    <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span></span> <span class="hljs-keyword">return</span> upvalue <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span>
+
+<span class="hljs-keyword">local</span> upvalueID = <span class="hljs-built_in">debug</span>.upvalueid(closureWithUpvalue(), <span class="hljs-number">1</span>)
+<span class="hljs-built_in">print</span>(<span class="hljs-string">"Upvalue ID:"</span>, upvalueID)
+</code></pre>
+<h3 id="debug-upvaluejoin">debug.upvaluejoin</h3>
+<p>The <code>debug.upvaluejoin</code> function joins two closures by sharing the same upvalue.</p>
+<p>Example:</p>
+<pre><code class="lang-lua"><span class="hljs-keyword">local</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">closureWithUpvalue</span><span class="hljs-params">()</span></span>
+    <span class="hljs-keyword">local</span> sharedUpvalue = <span class="hljs-string">"Shared Data"</span>
+    <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span></span> <span class="hljs-keyword">return</span> sharedUpvalue <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span>
+
+<span class="hljs-keyword">local</span> closure1 = closureWithUpvalue()
+<span class="hljs-keyword">local</span> closure2 = closureWithUpvalue()
+
+<span class="hljs-built_in">debug</span>.upvaluejoin(closure1, <span class="hljs-number">1</span>, closure2, <span class="hljs-number">1</span>)
+</code></pre>
+<h2 id="4-abstract-string-inputs">4. Abstract String Inputs</h2>
+<p>In Lua&#39;s debugging API, several functions accept abstract string inputs to define events, flags, and options. These strings provide developers with fine-grained control over debugging behavior. Let&#39;s explore some common abstract string inputs and their meanings:</p>
+<ul>
+<li><code>&quot;c&quot;</code>: Call events</li>
+<li><code>&quot;r&quot;</code>: Return events</li>
+<li><code>&quot;l&quot;</code>: Line events</li>
+<li><code>&quot;t&quot;</code>: Tail call events</li>
+<li><code>&quot;L&quot;</code>: Count line instructions</li>
+<li><code>&quot;S&quot;</code>: Count stack size</li>
+</ul>
+<h2 id="5-exploring-common-string-input-types">5. Exploring Common String Input Types</h2>
+<p>In</p>
+<p> various debug functions, strings are used to specify information or options. Here are common string input types and their usage:</p>
+<ul>
+<li>Function Names: Used to refer to specific functions.</li>
+<li>File Names: Indicate the source file of a function.</li>
+<li>Variable Names: Refer to local or upvalue variables.</li>
+<li>Event Strings: Specify hook triggering events (e.g., <code>&quot;crl&quot;</code>).</li>
+</ul>
+<h2 id="6-code-examples">6. Code Examples</h2>
+<h3 id="using-debug-sethook-for-tracing">Using debug.sethook for Tracing</h3>
+<pre><code class="lang-lua"><span class="hljs-keyword">local</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">traceHook</span><span class="hljs-params">(event, line)</span></span>
+    <span class="hljs-keyword">local</span> info = <span class="hljs-built_in">debug</span>.getinfo(<span class="hljs-number">2</span>)
+    <span class="hljs-built_in">print</span>(<span class="hljs-string">"Event:"</span>, event, <span class="hljs-string">"Line:"</span>, line, <span class="hljs-string">"Function:"</span>, info.name)
+<span class="hljs-keyword">end</span>
+
+<span class="hljs-built_in">debug</span>.sethook(traceHook, <span class="hljs-string">"crl"</span>)
+</code></pre>
+<h3 id="inspecting-function-information-with-debug-getinfo">Inspecting Function Information with debug.getinfo</h3>
+<pre><code class="lang-lua"><span class="hljs-keyword">local</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">exampleFunction</span><span class="hljs-params">()</span></span>
+    <span class="hljs-built_in">print</span>(<span class="hljs-string">"Hello from exampleFunction!"</span>)
+<span class="hljs-keyword">end</span>
+
+<span class="hljs-keyword">local</span> info = <span class="hljs-built_in">debug</span>.getinfo(exampleFunction)
+<span class="hljs-built_in">print</span>(<span class="hljs-string">"Function name:"</span>, info.name, <span class="hljs-string">"Source:"</span>, info.source, <span class="hljs-string">"Line:"</span>, info.currentline)
+</code></pre>
+<h3 id="manipulating-local-variables">Manipulating Local Variables</h3>
+<pre><code class="lang-lua"><span class="hljs-keyword">local</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">manipulateLocal</span><span class="hljs-params">()</span></span>
+    <span class="hljs-keyword">local</span> localVar = <span class="hljs-string">"Original Value"</span>
+    <span class="hljs-built_in">debug</span>.setlocal(<span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-string">"localVar"</span>, <span class="hljs-string">"Modified Value"</span>)
+<span class="hljs-keyword">end</span>
+</code></pre>
+<h3 id="examining-upvalues">Examining Upvalues</h3>
+<pre><code class="lang-lua"><span class="hljs-keyword">local</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">closureWithUpvalue</span><span class="hljs-params">()</span></span>
+    <span class="hljs-keyword">local</span> upvalue = <span class="hljs-string">"Data"</span>
+    <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span></span> <span class="hljs-keyword">return</span> upvalue <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span>
+
+<span class="hljs-keyword">local</span> getUpvalue = <span class="hljs-built_in">debug</span>.getupvalue(closureWithUpvalue(), <span class="hljs-number">1</span>)
+<span class="hljs-built_in">print</span>(<span class="hljs-string">"Upvalue:"</span>, getUpvalue)
+</code></pre>
+<h3 id="accessing-user-values">Accessing User Values</h3>
+<pre><code class="lang-lua"><span class="hljs-keyword">local</span> userdata = newuserdata()
+<span class="hljs-keyword">local</span> uservalue = <span class="hljs-keyword">debug</span>.getuservalue(userdata)
+<span class="hljs-keyword">print</span>(<span class="hljs-string">"User value:"</span>, uservalue)
+</code></pre>
+<h2 id="7-conclusion">7. Conclusion</h2>
+<p>The Lua debugging API empowers developers to gain deep insights into their code&#39;s execution, enabling efficient debugging and performance optimization. By harnessing the power of debug hooks, function information retrieval, and variable manipulation, you can enhance your debugging capabilities and create more robust Lua applications.</p>
+<p>Remember to utilize the abstract string inputs and various string input types to tailor your debugging approach to your specific needs. With these tools at your disposal, you&#39;re equipped to tackle complex debugging scenarios and create high-quality Lua code. Happy debugging!</p>
+</body></html>
